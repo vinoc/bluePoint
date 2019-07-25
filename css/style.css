@@ -1,0 +1,59 @@
+/* FONT FACE */
+/* Appelle les polices de la page */
+
+
+
+/*GLOBAL */
+/* Balises et class appelés à plusieurs endroits dans la page */
+*{box-sizing: border-box;}
+html{  font-size: 62.5%;}
+body{
+    font-size: 1.6em;
+    background-color:  #e8f8f5 ;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+ul{padding: 0;list-style: none}
+
+
+.button{
+    padding: 10px;
+    box-shadow: 0 0 5px  #76d7c4;
+    display: inline-block;
+    margin-top: 10px;
+}
+.button:hover{
+    background-color: #d1f2eb;
+}
+.button:active{
+    background-color: #76d7c4;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+/* HEADER */
+/* Ce qui concerne le header et la nav */
+
+
+
+
+
+
+/* MAIN */
+/* Ce qui concerne le corps du site */
+
+
+/*Affichage des points*/
+.point{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+/* FOOTER */
+/* Ce qui concerne le footer */
