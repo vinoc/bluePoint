@@ -18,19 +18,23 @@ function prepareTable() {
     bluePoint(points);
 }
 
+//selectionne un point au hasard et le change en bleu
 function bluePoint(points){
     var x= random(0, points.length);
     var y= random(0, points.length);
-console.log('x= '+ x +' y= '+y)
     points[y][x] = "RGB(0,0,255)";
 
     createView(points);
 }
 
 
+
 function randomColor(){
-return 'RGB('+random(0,255)+','+random(0,255)+',0)';
+    return 'RGB('+random(0,255)+','+random(0,255)+',0)';
 }
+
+
+
 
 function random(min, max){
 
@@ -38,6 +42,9 @@ function random(min, max){
 }
 
 
+
+
+//affiche les points
 function createView(points){
     var html='';
 
@@ -52,5 +59,24 @@ function createView(points){
     var view = document.querySelector('#bluePoint .border');
     view.innerHTML=html;
 
-    //todo ajouter html à la page.
+    pointsListener()
+}
+
+//ajoute les listener aux points nouvellement créé
+function pointsListener(){
+    var points = document.querySelectorAll('.point');
+
+    points.forEach(function (point){
+        point.addEventListener('click', clickOnPoint);
+    });
+}
+
+
+function clickOnPoint(){
+    if(this.style.backgroundColor=== "rgb(0, 0, 255)"){
+
+    }
+    else{
+        console.log('raté');
+    }
 }
