@@ -1,0 +1,46 @@
+<main>
+    <h1>blue Point</h1>
+    <p>le but du jeu est simple: Cliquez sur le plus grand nombre de point bleu <span class="bluePoint"></span> dans le temps impartie</p>
+    <section id="reglages">
+        <article>
+            <div>
+                <label FOr="nbCase">Selectionnez le nombre de case voulu</label>
+                <select id="nbCase" name="nbCase">
+                    <option value="3">3X3</option>
+                    <option value="6">6X6</option>
+                    <option value="9">9X9</option>
+                </select>
+
+                <label FOR="niveau">Difficulté</label>
+                <select id="niveau" name="niveau">
+                    <option value="1">Facile</option>
+                    <option value="2">Moyen</option>
+                    <option value="3">Difficile</option>
+                </select>
+                <div class="button" id="start">demarrer</div>
+            </div>
+            <div class="flex">
+                <div id="yourScore" class="marge">
+                    <p>Score</p>
+                    <p><span>0</span></p>
+                </div>
+
+                <div id="time" class="marge">
+                    <p>temps restant</p>
+                    <p><span>0</span></p>
+                </div>
+
+                <div id="bestScore" class="marge">
+                    <p>Meilleur score </p>
+                    <p><span>0</span></p>
+                </div>
+            </div>
+        </article>
+    </section>
+    <section id="bluePoint">
+        <article class="border flex flex-column" id="gameArea">
+
+        </article>
+    </section>
+    <div id="startIn" class="hidden" ><p>3</p></div>
+</main>

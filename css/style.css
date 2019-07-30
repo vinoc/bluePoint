@@ -1,6 +1,33 @@
 /* FONT FACE */
 /* Appelle les polices de la page */
+/*-----------GOOGLE FONT-------------*/
+@import url('https://fonts.googleapis.com/css?family=Frijole|Nosifer&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+English+SC&display=swap');
 
+
+
+.frijole {
+    font-family: 'Frijole', cursive;
+}
+
+
+.nosifer {
+    font-family: 'Nosifer', cursive;
+}
+/*Pour les titres*/
+.specialEliten, h1, h2, h3 {
+    font-family: 'Special Elite', cursive;
+}
+
+.gloriaHallelujah {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+
+.imFellEnglishSC {
+    font-family: 'IM Fell English SC', serif;
+}
 
 
 /*GLOBAL */
@@ -15,6 +42,7 @@ body{
     margin: auto;
 }
 ul{padding: 0;list-style: none}
+li{display: inline-block;}
 
 
 .button{
@@ -34,9 +62,63 @@ ul{padding: 0;list-style: none}
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
+    align-items: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+.marge{
+    margin: 15px;
+}
+
+.hidden{
+    display: none;
 }
 /* HEADER */
 /* Ce qui concerne le header et la nav */
+
+
+header{
+    display: flex;
+    margin-top: -10px;
+}
+
+header div{
+    text-align: center;
+    max-width: 115px;
+}
+header div:hover{
+    background-color: RGBA(0,0,0,0.1);
+}
+
+header a{
+    font-family: 'Frijole', cursive;
+    color: #1c2833;
+    text-decoration: none;
+}
+
+header div a{
+    padding: 5px;
+}
+
+nav li{
+    display: inline-block;
+    margin-top: 5px;
+
+}
+
+nav a{
+    padding: 20px;
+    font-size: 2rem;
+}
+nav a:hover{
+    background-color: RGBA(0,0,0,0.1);
+}
+
+
+
+
 
 
 
@@ -48,11 +130,37 @@ ul{padding: 0;list-style: none}
 
 
 /*Affichage des points*/
-.point{
+.point, .bluePoint{
     width: 20px;
     height: 20px;
     border-radius: 50%;
     margin: 5px;
+
+}
+
+.bluePoint{
+    background-color: RGB(0,0,255);
+    display: inline-block;
+    margin-bottom: -5px;
+}
+
+
+/*Compte à rebour avant départ*/
+#startIn{
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 10rem;
+    border: 2px solid red;
+    background-color: yellow;
+}
+#startIn p{
+    position:absolute;
+    top: 25%;
+    left: 45%;
 }
 
 /* FOOTER */
