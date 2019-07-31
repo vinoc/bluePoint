@@ -163,5 +163,14 @@ nav a:hover{
     left: 45%;
 }
 
+
+
+
+
+/*-------- ERROR 404 ---------*/
+#error404 video{
+    width: 80%;
+}
+
 /* FOOTER */
 /* Ce qui concerne le footer */
