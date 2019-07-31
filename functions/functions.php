@@ -44,7 +44,7 @@ function connecting()
     elseif (isset($_COOKIE['1234']) AND isset($_COOKIE['1235'])) {
         $id = htmlspecialchars($_COOKIE['1234']);
         $passwordtemp= htmlspecialchars($_COOKIE['1235']);
-        $memberAdministrator= new MemberAdministrator();
+        $memberAdministrator= new MemberManager();
         return $memberAdministrator->connexionCookie($id,$passwordtemp);
     }
     else{

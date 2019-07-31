@@ -6,9 +6,8 @@
  * Time: 15:50
  */
 
-class MemberAdministrator
+class MemberManager
 {
-    private $id;
     protected $bdd;
 
     public function __construct()

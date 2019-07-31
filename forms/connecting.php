@@ -36,7 +36,7 @@ $login = htmlspecialchars($_POST['login']);
 $password = $_POST['password'];
 
 
-$memberAdministrator= new MemberAdministrator();
+$memberAdministrator= new MemberManager();
 
 if ($memberAdministrator->connectionLogin($login, $password) == false){
 

@@ -6,10 +6,12 @@ class Score
     private $_id;
     private $_score;
     private $_idPlayer;
+    private $_login
     private $_duree;//Durée de la partie
     private $_difficulty;
     private $_duel;
     private $_idPlayer2;
+    private $_login2
     private $_score2;
     private $_dateProvocation;
     private $_dateBack;
@@ -19,15 +21,17 @@ class Score
 
     public function __construct($data)
     {
+        var_dump($data);
         if(!isset($data['duel']) OR $data['duel']==false){
             $this->_idPlayer2= null;
             $this->_score2 = null;
             $this->_duel = false;
             $this->_dateProvocation= null;
             $this->_dateBack = null;
+            $this->_login2 = null;
         }else{
             if(isset($data['idPlayer2'])){
-                $this->setIdPlayer2($data['idPlayer2'])
+                $this->setIdPlayer2($data['idPlayer2']);
             }
             else{
                 $this->setIdPlayer2(null);
@@ -35,7 +39,7 @@ class Score
             }
 
             if(isset($data['score2'])){
-                $this->setScore2($data['score2'])
+                $this->setScore2($data['score2']);
             }
             else{
                 $this->setScore2(null);
@@ -43,7 +47,7 @@ class Score
             }
 
             if(isset($data['duel'])){
-                $this->setDuel($data['duel'])
+                $this->setDuel($data['duel']);
             }
             else{
                 $this->setDuel(false);
@@ -51,7 +55,7 @@ class Score
             }
 
             if(isset($data['dateProvocation'])){
-                $this->setDateProvocation($data['dateProvocation'])
+                $this->setDateProvocation($data['dateProvocation']);
             }
             else{
                 $this->setDateProvocation(null);
@@ -59,16 +63,24 @@ class Score
             }
 
             if(isset($data['dateBack'])){
-                $this->setDateBack($data['dateBack'])
+                $this->setDateBack($data['dateBack']);
             }
             else{
                 $this->setDateBack(null);
                 $this->_errors[] = 'dateBack';
             }
+
+            if(isset($data['login2'])){
+                $this->setLogin2($data['login2']);
+            }
+            else{
+                $this->setLogin2(null);
+                $this->_errors[] = 'login2';
+            }
         }
 
         if(isset($data['id'])){
-            $this->setId($data['id'])
+            $this->setId($data['id']);
             }
         else{
             $this->setId(null);
@@ -76,7 +88,7 @@ class Score
         }
 
         if(isset($data['score'])){
-            $this->setScore($data['score'])
+            $this->setScore($data['score']);
             }
         else{
             $this->setScore(null);
@@ -84,34 +96,42 @@ class Score
         }
 
         if(isset($data['idPlayer'])){
-            $this->setIdPlayer($data['idPlayer'])
+            $this->setIdPlayer($data['idPlayer']);
             }
         else{
-            $this->setIdPlayer(null);
+            $this->setIdPlayer(0);
             $this->_errors[] = 'idPlayer';
         }
 
+        if(isset($data['login'])){
+            $this->setLogin($data['login']);
+        }
+        else{
+            $this->setLogin(0);
+            $this->_errors[] = 'login';
+        }
+
         if(isset($data['duree'])){
-            $this->setDuree($data['duree'])
+            $this->setDuree($data['duree']);
             }
         else{
-            $this->setDuree(null);
+            $this->setDuree(30);
             $this->_errors[] = 'duree';
         }
 
         if(isset($data['difficulty'])){
-            $this->setDifficulty($data['difficulty'])
+            $this->setDifficulty($data['difficulty']);
             }
         else{
-            $this->setDifficulty(null);
+            $this->setDifficulty(0);
             $this->_errors[] = 'difficulty';
         }
 
         if(isset($data['dateProvocation'])){
-            $this->setDateProvocation($data['dateProvocation'])
+            $this->setDateProvocation($data['dateProvocation']);
             }
         else{
-            $this->setDateProvocation(null);
+            $this->setDateProvocation('');
             $this->_errors[] = 'dateProvocation';
         }
     }
@@ -130,6 +150,10 @@ class Score
     public function setIdPlayer(int $idPlayer)
     {
         $this->_idPlayer = $idPlayer;
+    }
+
+    public function setLogin(string $login){
+        $this->_login = $login;
     }
 
     public function setDifficulty(int $difficulty)
@@ -151,6 +175,10 @@ class Score
     {
         $this->_idPlayer2 = $idPlayer2;
     }
+
+       public function setLogin2(string $login2){
+           $this->_login2 = $login2;
+       }
 
     public function setScore2(int $score2)
     {
@@ -176,7 +204,7 @@ class Score
 
     public function getScore():int
     {
-        return $this->_score;
+        return htmlspecialchars($this->_score);
     }
 
     public function getIdPlayer():int
@@ -186,12 +214,12 @@ class Score
 
     public function getDuree():int
     {
-        return $this->_duree;
+        return htmlspecialchars($this->_duree);
     }
 
     public function getDifficulty():int
     {
-        return $this->_difficulty;
+        return htmlspecialchars($this->_difficulty);
     }
 
     public function isDuel(): bool
@@ -206,7 +234,7 @@ class Score
 
     public function getScore2():int
     {
-        return $this->_score2;
+        return htmlspecialchars($this->_score2);
     }
 
     public function getDateProvocation():int
@@ -222,6 +250,15 @@ class Score
     public function getErrors():int
     {
         return $this->_errors;
+    }
+
+    public function getLogin()
+    {
+        return htmlspecialchars($this->_login);
+    }
+    public function getLogin2()
+    {
+        return htmlspecialchars($this->_login2);
     }
 
 
