@@ -25,9 +25,10 @@ class ScoreManager
 
     public function bestScoresOfWeek(int $difficulty):array
     {
+        $dateLessWeek= $dateLessMonth= date("Y-m-d h:m:s", strtotime("-1 week"));
         $difficulty=(isset($difficulty) AND 0< $difficulty AND $difficulty <4 )? $difficulty: 1;
-        $req = $this->_bdd->prepare('SELECT scores.idPlayer, members.login, scores.score, scores.timestamp FROM `scores` INNER JOIN members ON members.id = scores.idPlayer WHERE `difficulty` = ? AND `timestamp` >= CURRENT_TIMESTAMP()-7000000 ORDER BY `scores`.`score` DESC LIMIT 10 ');
-        $req->execute([$difficulty]);
+        $req = $this->_bdd->prepare('SELECT scores.idPlayer, members.login, scores.score, scores.timestamp FROM `scores` INNER JOIN members ON members.id = scores.idPlayer WHERE `difficulty` = ? AND `timestamp` >= ? ORDER BY `scores`.`score` DESC LIMIT 10 ');
+        $req->execute([$difficulty, $dateLessWeek]);
 
         $tab = $req->fetchAll();
         $scores=[];
@@ -39,4 +40,20 @@ class ScoreManager
 
     }
 
+    public function bestScoresOfMonth(int $difficulty):array
+    {
+        $dateLessMonth= date("Y-m-d h:m:s", strtotime("-1 month"));
+        $difficulty=(isset($difficulty) AND 0< $difficulty AND $difficulty <4 )? $difficulty: 1;
+        $req = $this->_bdd->prepare('SELECT scores.idPlayer, members.login, scores.score, scores.timestamp FROM `scores` INNER JOIN members ON members.id = scores.idPlayer WHERE `difficulty` = ? AND `timestamp` >= ? ORDER BY `scores`.`score` DESC LIMIT 10 ');
+        $req->execute([$difficulty, $dateLessMonth]);
+
+        $tab = $req->fetchAll();
+        $scores=[];
+        foreach ($tab as $element){
+            $scores[] = new Score($element);
+        }
+        return $scores;
+
+
+    }
 }

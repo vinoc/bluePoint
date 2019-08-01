@@ -6,12 +6,12 @@ class Score
     private $_id;
     private $_score;
     private $_idPlayer;
-    private $_login
+    private $_login;
     private $_duree;//Durée de la partie
     private $_difficulty;
     private $_duel;
     private $_idPlayer2;
-    private $_login2
+    private $_login2;
     private $_score2;
     private $_dateProvocation;
     private $_dateBack;
@@ -21,7 +21,7 @@ class Score
 
     public function __construct($data)
     {
-        var_dump($data);
+
         if(!isset($data['duel']) OR $data['duel']==false){
             $this->_idPlayer2= null;
             $this->_score2 = null;
@@ -83,7 +83,7 @@ class Score
             $this->setId($data['id']);
             }
         else{
-            $this->setId(null);
+            $this->setId(0);
             $this->_errors[] = 'id';
         }
 

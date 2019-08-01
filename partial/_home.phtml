@@ -1,0 +1,63 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Amelvin
+ * Date: 31/07/2019
+ * Time: 09:27
+ */
+?>
+
+<main id="home">
+    <h1>Blue Point</h1>
+    <a class="button" href="game">Lancer une partie</a>
+    <section id="scores" class="flex flex-wrap">
+        <h2>Meilleurs scores</h2>
+        <article>
+            <h3>Meilleurs scores depuis toujours</h3>
+            <p>Niveau <?php echo $bestNiveauAleatoire; ?></p>
+            <ul>
+                <?php foreach ($bestScores as $score ):?>
+                <li>
+                    <a href="pageJoueur?id=<?php echo $score->getIdPlayer();?>" class=" flex gloriaHallelujah">
+                        <div><?php echo $score->getLogin(); ?></div>
+                        <div><?php echo $score->getScore(); ?></div>
+                    </a>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+
+        </article>
+
+        <article>
+            <h3>Meilleurs scores de la semaine</h3>
+            <p>Niveau <?php echo $weekNiveauAleatoire; ?></p>
+            <ul>
+                <?php foreach ($weekScores as $score ):?>
+                    <li>
+                        <a href="pageJoueur?id=<?php echo $score->getIdPlayer();?>" class=" flex gloriaHallelujah">
+                            <div><?php echo $score->getLogin(); ?></div>
+                            <div><?php echo $score->getScore(); ?></div>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+
+        </article>
+
+        <article>
+            <h3>Meilleurs scores du mois</h3>
+            <p>Niveau <?php echo $monthNiveauAleatoire; ?></p>
+            <ul>
+                <?php foreach ($monthScores as $score ):?>
+                    <li>
+                        <a href="pageJoueur?id=<?php echo $score->getIdPlayer();?>" class=" flex gloriaHallelujah">
+                            <div><?php echo $score->getLogin(); ?></div>
+                            <div><?php echo $score->getScore(); ?></div>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+
+        </article>
+    </section>
+</main>

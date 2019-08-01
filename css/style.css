@@ -42,7 +42,7 @@ body{
     margin: auto;
 }
 ul{padding: 0;list-style: none}
-li{display: inline-block;}
+nav li{display: inline-block;}
 
 
 .button{
@@ -50,6 +50,8 @@ li{display: inline-block;}
     box-shadow: 0 0 5px  #76d7c4;
     display: inline-block;
     margin-top: 10px;
+    color: black;
+    text-decoration: none;
 }
 .button:hover{
     background-color: #d1f2eb;
@@ -63,6 +65,10 @@ li{display: inline-block;}
     justify-content: center;
     flex-wrap: nowrap;
     align-items: center;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
 }
 
 .flex-column{
@@ -128,8 +134,49 @@ nav a:hover{
 /* MAIN */
 /* Ce qui concerne le corps du site */
 
+/*------------------ HOME---------------*/
 
-/*Affichage des points*/
+#scores article{
+    width: 90%;
+    border: 1px solid #aed6f1;
+    margin: 10px;
+    box-shadow: 1px 1px 10px #aed6f1;
+}
+
+#scores article p{
+    width: 100%;
+    background-color: #d5f5e3;
+    padding: 5px;
+    margin-top: -15px;
+
+}
+
+#scores a{
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+
+#scores a:hover{
+    background-color: RGBA(255,255,255,0.5);
+}
+
+#scores a div{
+    margin: auto 15px;
+
+}
+
+
+
+
+
+/*----------------- END HOME -------------*/
+
+
+
+
+/*-------Affichage des points--------*/
 .point, .bluePoint{
     width: 20px;
     height: 20px;
@@ -145,8 +192,8 @@ nav a:hover{
 }
 
 
-/*Compte à rebour avant départ*/
-#startIn{
+/*----Compte à rebour avant départ-----*/
+#startIn, .startIn{
     margin: auto;
     position: absolute;
     top: 0;

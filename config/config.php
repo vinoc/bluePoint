@@ -7,8 +7,8 @@ if ($_SERVER['HTTP_HOST'] == '127.0.0.1') {
     $racine_srv = $_SERVER['DOCUMENT_ROOT'] . '/bluePoint/';
     $stateDev = 'dev';
 } else {
-    $host = 'https://' . $_SERVER['HTTP_HOST'] . '/bluePoint/';
-    $racine_srv = $_SERVER['DOCUMENT_ROOT'] . '/bluePoint/';
+    $host = 'https://' . $_SERVER['HTTP_HOST'] . '/cheezpa/bluePoint/';
+    $racine_srv = $_SERVER['DOCUMENT_ROOT'] . '/cheezpa/bluePoint/';
     $stateDev = 'prod';
 }
 
@@ -73,7 +73,7 @@ if ($_SERVER['HTTP_HOST'] == '127.0.0.1' OR $_SERVER['HTTP_HOST'] == 'localhost'
     $bddLogin = 'root';
     $bddMDP = '';
 } else {
-    include_once '../bdd/bdd.php';
+    include_once '../../bdd/bdd.php';
 }
 
 // Constante pour la BDD
