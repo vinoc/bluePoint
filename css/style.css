@@ -74,6 +74,11 @@ nav li{display: inline-block;}
 .flex-column{
     flex-direction: column;
 }
+
+.flex-align-top{
+    justify-content: normal;
+}
+
 .marge{
     margin: 15px;
 }
@@ -145,11 +150,21 @@ nav a:hover{
 
 #scores article p{
     width: 100%;
-    background-color: #d5f5e3;
     padding: 5px;
     margin-top: -15px;
-
 }
+
+/*Background for each lvl show*/
+.facile{
+    background-color: #d5f5e3;
+}
+.moyen{
+    background-color:  #fae5d3 ;
+}
+.difficile{
+    background-color:  #f2d7d5 ;
+}
+/*- end background*/
 
 #scores a{
     width: 100%;
@@ -177,12 +192,28 @@ nav a:hover{
 
 
 /*-------Affichage des points--------*/
-.point, .bluePoint{
-    width: 20px;
-    height: 20px;
+.point{
     border-radius: 50%;
     margin: 5px;
+}
 
+.point.none{
+    width: 20px;
+    height: 20px;
+}
+
+.point.three{
+    width: 90px;
+    height: 90px;
+}
+
+.point.six{
+    width: 40px;
+    height: 40px;
+}
+.point.nine{
+    width: 20px;
+    height: 20px;
 }
 
 .bluePoint{
@@ -192,7 +223,7 @@ nav a:hover{
 }
 
 
-/*----Compte à rebour avant départ-----*/
+/*---- Start Count down/Game Area-----*/
 #startIn, .startIn{
     margin: auto;
     position: absolute;
@@ -201,9 +232,9 @@ nav a:hover{
     width: 100%;
     height: 100%;
     font-size: 10rem;
-    border: 2px solid red;
-    background-color: yellow;
+    background-color: white;
 }
+
 #startIn p{
     position:absolute;
     top: 25%;
@@ -211,6 +242,22 @@ nav a:hover{
 }
 
 
+
+/*------- THE GAME ------------*/
+#theGame{
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    background-color: #e8f8f5;
+}
+
+#theGame .scores{
+    margin-top : -1px;
+}
 
 
 

@@ -1,22 +1,21 @@
 'use strict'
 function prepareGame(){
-    nbPoints = document.querySelector('select').value;
-    difficulty= document.querySelector('#niveau').value;
-
-    prepareTable();
+    game.setNbPoints(document.querySelector('select').value);
+    game.setDifficulty(document.querySelector('#niveau').value);
+    // Faire apparaitre l'aire de jeu
+    classToggle(gameArea, 'hidden');
+    // Lancement du compte à rebour avant le jeu
+    startIsComming();
 }
 
-
 function prepareTable() {
-
     var points=[];
     var i;
     var y;
-
-    for (i = 0; i < nbPoints ; i++) {
+    for (i = 0; i < game.getNbPoint() ; i++) {
         points[i]=[];
-        for (y = 0; y < nbPoints ; y++) {
-            points[i][y] = randomColor();
+        for (y = 0; y < game.getNbPoint() ; y++) {
+            points[i][y] = new Point;
         }
     }
     bluePoint(points);
@@ -26,17 +25,17 @@ function prepareTable() {
 function bluePoint(points){
     var x= random(0, points.length);
     var y= random(0, points.length);
-    points[y][x] = "RGB(0,0,255)";
+   var point=points[y][x]
+    point.setColor("RGB(0,0,255)");
+    console.log(points);
     createView(points);
 }
 
 
 
 function randomColor(){
-    return 'RGB('+random(0,255)+','+random(0,255)+','+random(0,parseInt(difficulty))+')';
+    return 'RGB('+random(0,255)+','+random(0,255)+','+random(0,game.getDifficulty())+')';
 }
-
-
 
 
 function random(min, max){
@@ -44,23 +43,22 @@ function random(min, max){
 }
 
 
-
-
 //affiche les points
 function createView(points){
     var html='';
 
+
+
     points.forEach(function(line){
         html+= '<div class=\'flex\'>';
         line.forEach(function(point){
-            html += '<div class="point" style="background-color:'+point+'"></div>';
+            html += '<div class="point '+game.nbPointsClass+'" style="background-color:'+point.getColor()+'"></div>';
         });
         html+= '</div>';
     });
 
-    gameArea.innerHTML=html;
-    startIsComming();
-
+    pointView.innerHTML=html;
+    pointsListener();
 }
 
 //ajoute les listener aux points nouvellement créé
@@ -69,6 +67,14 @@ function pointsListener(){
 
     points.forEach(function (point){
         point.addEventListener('click', clickOnPoint);
+    });
+}
+
+function pointListenerStop(){
+    var points = document.querySelectorAll('.point');
+
+    points.forEach(function (point){
+        point.removeEventListener('click', clickOnPoint);
     });
 }
 
@@ -85,23 +91,23 @@ function clickOnPoint(){
 
 
 function scoreMore(){
-    realScore++;
+    game.setScore(game.getScore()+1);
     showScore();
 
 }
 
 function scoreLess(){
-    if(realScore >0) {
-        realScore--;
+    if(game.getScore() >0) {
+        game.setScore(game.getScore()-1)
     }else {
-        realScore = 0;
+        game.setScore(0);
     }
     showScore();
 }
 
 function showScore(){
-    score.textContent= realScore;
-    prepareTable()
+    score.textContent= game.getScore();
+    prepareTable();
 }
 
 
@@ -112,24 +118,8 @@ function classToggle(variable, toggleClass){
 
 }
 
-//Lancement compte à rebours + activation/desactivations des listners
-function gameTime(){
-    var timeLeft = document.querySelector('#time span');
-    if(newGame === true) {
-        pointsListener();
-        timeLeft.innerHTML = 30.0;
 
-        var x = setInterval(function () {
-            timeLeft.innerHTML = (parseFloat(timeLeft.innerHTML) - 0.1).toFixed(1);
-            console.log(parseFloat(timeLeft.innerHTML));
-
-        }, 100);
-        newGame = false;
-    }
-    if (parseFloat(timeLeft.innerHTML) <= 0) {
-        console.log('end');
-        clearInterval(x);
-        timeLeft.innerHTML = 0;
-    }
-
+function endGame(){
+    classToggle(gameArea, 'hidden');
+    classToggle(scoresFinal, 'hidden');
 }

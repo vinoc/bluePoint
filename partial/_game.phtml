@@ -19,7 +19,25 @@
                 </select>
                 <div class="button" id="start">demarrer</div>
             </div>
-            <div class="flex">
+
+            <div id="scoresFinal" class="flex scores hidden">
+                <div id="yourScore" class="marge">
+                    <p>Score</p>
+                    <p><span>0</span></p>
+                </div>
+
+                <div id="bestScore" class="marge">
+                    <p>Meilleur score </p>
+                    <p><span>0</span></p>
+                </div>
+            </div>
+
+        </article>
+    </section>
+    <section id="gameArea" class="hidden">
+        <div id="startIn" class="hidden" ><p></p></div>
+        <article id="theGame" class="border flex flex-column flex-align-top hidden" >
+            <div class="flex scores">
                 <div id="yourScore" class="marge">
                     <p>Score</p>
                     <p><span>0</span></p>
@@ -35,12 +53,13 @@
                     <p><span>0</span></p>
                 </div>
             </div>
+            <div id="pointView"></div>
         </article>
-    </section>
-    <section id="bluePoint" class="startIn hidden">
-        <article class="border flex flex-column" id="gameArea">
 
-        </article>
     </section>
-    <div id="startIn" class="hidden" ><p></p></div>
 </main>
+<script src="js/class/Game.js"></script>
+<script src="js/class/Time.js"></script>
+<script src="js/class/Point.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/main.js"></script>
