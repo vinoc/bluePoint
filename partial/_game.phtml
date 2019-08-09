@@ -21,14 +21,14 @@
             </div>
 
             <div id="scoresFinal" class="flex scores hidden">
-                <div id="yourScore" class="marge">
+                <div id="yourScore1" class="marge">
                     <p>Score</p>
                     <p><span>0</span></p>
                 </div>
 
-                <div id="bestScore" class="marge">
+                <div id="bestScore1" class="marge">
                     <p>Meilleur score </p>
-                    <p><span>0</span></p>
+                    <p><span><?php echo $myBestScore; ?></span></p>
                 </div>
             </div>
 
@@ -38,7 +38,7 @@
         <div id="startIn" class="hidden" ><p></p></div>
         <article id="theGame" class="border flex flex-column flex-align-top hidden" >
             <div class="flex scores">
-                <div id="yourScore" class="marge">
+                <div id="yourScore2" class="marge">
                     <p>Score</p>
                     <p><span>0</span></p>
                 </div>
@@ -48,18 +48,20 @@
                     <p><span>0</span></p>
                 </div>
 
-                <div id="bestScore" class="marge">
+                <div id="bestScore2" class="marge">
                     <p>Meilleur score </p>
-                    <p><span>0</span></p>
+                    <p><span><?php echo $myBestScore; ?></span></p>
                 </div>
             </div>
             <div id="pointView"></div>
         </article>
 
     </section>
+    <div id="debug"></div>
 </main>
 <script src="js/class/Game.js"></script>
 <script src="js/class/Time.js"></script>
 <script src="js/class/Point.js"></script>
+<script src="js/submit.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/main.js"></script>

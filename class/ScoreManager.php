@@ -56,4 +56,38 @@ class ScoreManager
 
 
     }
+
+    public function saveScore($score){
+        $req= $this->_bdd->prepare('INSERT INTO `scores`( `idPlayer`, `score`, `difficulty`) VALUES (:idPlayer, :score, :difficulty)');
+        $req->bindValue(':idPlayer', $score->_idPlayer(), PDO::PARAM_INT);
+        $req->bindValue(':score', $score->getScore(), PDO::PARAM_INT);
+        $req->bindValue(':difficulty', $score->getDifficulty(), PDO::PARAM_INT);
+
+        return $req->execute();
+
+    }
+
+    public function saveDuel($score)
+    {
+        if (!$score->isDuel()) {
+            return false;
+        }
+
+        $req = $this->_bdd->prepare('INSERT INTO `duels`( `idPlayer1`, `idPlayer2`, `scorePlayer1`, `difficulty`) VALUES (:idPlayer1,:idPlayer2, :scorePlayer1, :diffuculty)');
+        $req->bindValue(':idPlayer1', $score->_idPlayer(), PDO::PARAM_INT);
+        $req->bindValue(':idPlayer2', $score->_idPlayer2(), PDO::PARAM_INT);
+        $req->bindValue(':score', $score->getScore(), PDO::PARAM_INT);
+        $req->bindValue(':difficulty', $score->getDifficulty(), PDO::PARAM_INT);
+
+        return $req->execute();
+
+    }
+
+    public function myBestScore($id){
+        $req = $this->_bdd->prepare('SELECT score FROM `scores` WHERE idPlayer= :idPlayer ORDER BY score DESC LIMIT 1 ');
+        $req->bindValue(':idPlayer', $id, PDO::PARAM_INT);
+        $req->execute();
+
+        return $req->fetch();
+    }
 }

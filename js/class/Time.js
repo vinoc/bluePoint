@@ -3,7 +3,7 @@
 function startIsComming(){
     var div = document.querySelector('#startIn');
     var count = document.querySelector('#startIn p');
-    count.innerHTML = 3;
+    count.innerHTML = WaitingTime;
 
     classToggle(div, 'hidden');
     var x;
@@ -32,12 +32,11 @@ function gameTime(){
         game.setStarted(true);
         prepareTable();
         pointsListener();
-        timeLeft.innerHTML = 5.0;
+        timeLeft.innerHTML = timeOfTheGame;
 
         var x = setInterval(function () {
             //tofixed: Pour n'afficher qu'1 après la virgule (29.2)
             timeLeft.innerHTML = (parseFloat(timeLeft.innerHTML) - 0.1).toFixed(1);
-            console.log(timeLeft.innerHTML);
             if(timeLeft.innerHTML<= 0){
                 clearInterval(x);
                 pointListenerStop();

@@ -106,7 +106,8 @@ function scoreLess(){
 }
 
 function showScore(){
-    score.textContent= game.getScore();
+    score1.textContent= game.getScore();
+    score2.textContent= game.getScore();
     prepareTable();
 }
 
@@ -122,4 +123,5 @@ function classToggle(variable, toggleClass){
 function endGame(){
     classToggle(gameArea, 'hidden');
     classToggle(scoresFinal, 'hidden');
+    saveScore();
 }
