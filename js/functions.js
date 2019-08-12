@@ -1,11 +1,13 @@
 'use strict'
 function prepareGame(){
-    game.setNbPoints(document.querySelector('select').value);
-    game.setDifficulty(document.querySelector('#niveau').value);
-    // Faire apparaitre l'aire de jeu
-    classToggle(gameArea, 'hidden');
-    // Lancement du compte à rebour avant le jeu
-    startIsComming();
+    if(game.getStarted()===false) {
+        game.setNbPoints(document.querySelector('select').value);
+        game.setDifficulty(document.querySelector('#niveau').value);
+        // Faire apparaitre l'aire de jeu
+        classToggle(gameArea, 'hidden');
+        // Lancement du compte à rebour avant le jeu
+        startIsComming();
+    }
 }
 
 function prepareTable() {
@@ -27,7 +29,6 @@ function bluePoint(points){
     var y= random(0, points.length);
    var point=points[y][x]
     point.setColor("RGB(0,0,255)");
-    console.log(points);
     createView(points);
 }
 
@@ -122,6 +123,9 @@ function classToggle(variable, toggleClass){
 
 function endGame(){
     classToggle(gameArea, 'hidden');
-    classToggle(scoresFinal, 'hidden');
+    classToggle(theGame, 'hidden');
+    scoresFinal.classList.remove('hidden');
     saveScore();
+    game.resetGame();
+    console.log(game);
 }

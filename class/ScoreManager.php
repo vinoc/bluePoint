@@ -59,7 +59,7 @@ class ScoreManager
 
     public function saveScore($score){
         $req= $this->_bdd->prepare('INSERT INTO `scores`( `idPlayer`, `score`, `difficulty`) VALUES (:idPlayer, :score, :difficulty)');
-        $req->bindValue(':idPlayer', $score->_idPlayer(), PDO::PARAM_INT);
+        $req->bindValue(':idPlayer', $score->getIdPlayer(), PDO::PARAM_INT);
         $req->bindValue(':score', $score->getScore(), PDO::PARAM_INT);
         $req->bindValue(':difficulty', $score->getDifficulty(), PDO::PARAM_INT);
 

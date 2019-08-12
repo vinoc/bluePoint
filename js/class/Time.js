@@ -6,14 +6,15 @@ function startIsComming(){
     count.innerHTML = WaitingTime;
 
     classToggle(div, 'hidden');
-    var x;
-    x=setInterval(function(){
+    var wait;
+    wait=setInterval(function(){
         if(count.innerHTML<2){
-            clearInterval(x);
+            clearInterval(wait);
             classToggle(div, 'hidden');
+            count.innerHTML = WaitingTime;
             gameTime();
-        }else
-        {
+        }
+        else {
             count.innerHTML--;
         }
     }, 1000);
@@ -34,15 +35,14 @@ function gameTime(){
         pointsListener();
         timeLeft.innerHTML = timeOfTheGame;
 
-        var x = setInterval(function () {
+        var gameTime = setInterval(function () {
             //tofixed: Pour n'afficher qu'1 après la virgule (29.2)
             timeLeft.innerHTML = (parseFloat(timeLeft.innerHTML) - 0.1).toFixed(1);
             if(timeLeft.innerHTML<= 0){
-                clearInterval(x);
+                clearInterval(gameTime);
                 pointListenerStop();
-                endGame();
                 timeLeft.innerHTML = 0;
-                //todo activer la fin du jeu
+                endGame();
             }
         }, 100);
 

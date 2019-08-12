@@ -84,4 +84,5 @@ Game.prototype.resetGame = function(){
     this.difficulty = 1;//1-2-3
     this.nbPoints = 3;//3-6-9
     this.score = 0;
+
 }

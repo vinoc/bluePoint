@@ -13,8 +13,8 @@ var pointView = document.querySelector('#pointView');
 var game = new Game;
 
 // CONFIG
-var WaitingTime = 1;
-var timeOfTheGame = 1.0;
+var WaitingTime = 3;
+var timeOfTheGame = 3.0;
 
 
 document.addEventListener('DOMContentLoaded',function(){
