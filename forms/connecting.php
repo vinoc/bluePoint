@@ -44,5 +44,5 @@ if ($memberAdministrator->connectionLogin($login, $password) == false){
     redirection('connexion');
 }
 else{
-    redirection('compte');
+    redirection('home');
 }

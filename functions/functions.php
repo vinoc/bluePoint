@@ -96,4 +96,11 @@ function devOrProd(): bool
         return true;
     }
 }
+
+function scoreRandom():array
+{
+    $tab['niveau'] = random_int(1,3);
+    $tab['nbPoints'] = random_int(1,3)*3;
+    return $tab;
+}
 ?>

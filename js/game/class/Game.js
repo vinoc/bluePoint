@@ -16,22 +16,13 @@ Game.prototype.setStarted = function(bool){
 };
 
 Game.prototype.setDifficulty = function(int){
-    switch (int) {
-        case '1':
-            this.difficulty = 0;
-            break;
-        case '2':
-            this.difficulty = 150;
-            break;
-        case '3':
-            this.difficulty = 220;
-            break;
-        default:
-            this.difficulty = 10;
-
+   if(int>= 1 && int <= 3){
+        this.difficulty= int;
     }
-
-};
+   else{
+        this.difficulty = 1;
+   }
+}
 
 Game.prototype.setNbPoints = function(int){
     this.nbPoints = int;

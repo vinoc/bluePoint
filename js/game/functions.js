@@ -35,7 +35,24 @@ function bluePoint(points){
 
 
 function randomColor(){
-    return 'RGB('+random(0,255)+','+random(0,255)+','+random(0,game.getDifficulty())+')';
+    var blue;
+
+    switch (game.getDifficulty()) {
+        case '1':
+            blue = 0;
+            break;
+        case '2':
+            blue = 150;
+            break;
+        case '3':
+            blue = 220;
+            break;
+        default:
+            blue = 10;
+    }
+
+
+    return 'RGB('+random(0,255)+','+random(0,255)+','+random(0,blue)+')';
 }
 
 

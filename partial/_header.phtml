@@ -23,7 +23,9 @@
     <div><p><a   href="<?php echo $urlMonCompte; ?>" title="Mon compte">Bonjour <?php echo $member->getLogin(); ?></a></p></div>
     <nav>
 
-        <ul><!-- @whitespace
+        <ul>
+            <li><a href="<?php echo HOST; ?>home" title="accueil"><i class="fas fa-home"></i></a></li>
+            <!-- @whitespace
 --><?php if($member->getIdentify()): ?><!-- @whitespace
 
         --><li>

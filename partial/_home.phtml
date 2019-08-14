@@ -15,6 +15,7 @@
         <article>
             <h3>Meilleurs scores depuis toujours</h3>
             <p class="<?php echo $bestNiveauAleatoire; ?>">Niveau <?php echo $bestNiveauAleatoire; ?></p>
+            <p><?php echo $bestPointsAleatoire; ?> X <?php echo $bestPointsAleatoire; ?></p>
             <ul>
                 <?php foreach ($bestScores as $score ):?>
                 <li>
@@ -30,7 +31,8 @@
 
         <article>
             <h3>Meilleurs scores de la semaine</h3>
-            <p class="<?php echo $weekNiveauAleatoire; ?>">Niveau <?php echo $weekNiveauAleatoire; ?></p>
+            <p class="<?php echo $weekNiveauAleatoire; ?>">Niveau <?php echo $weekNiveauAleatoire; ?>, </p>
+            <p><?php echo $weekPointsAleatoire; ?> X <?php echo $weekPointsAleatoire; ?></p>
             <ul>
                 <?php foreach ($weekScores as $score ):?>
                     <li>
@@ -47,6 +49,7 @@
         <article>
             <h3>Meilleurs scores du mois</h3>
             <p class="<?php echo $monthNiveauAleatoire; ?>">Niveau <?php echo $monthNiveauAleatoire; ?></p>
+            <p><?php echo $monthPointsAleatoire; ?> X <?php echo $monthPointsAleatoire; ?></p>
             <ul>
                 <?php foreach ($monthScores as $score ):?>
                     <li>

@@ -17,4 +17,4 @@ unset($_SESSION['errors']);
 
 echo $header;
 
-require(PARTIAL_PATH.'_connexion.php');
+require(PARTIAL_PATH.'_connexion.phtml');

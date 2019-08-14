@@ -74,9 +74,20 @@ nav li{display: inline-block;}
 .flex-column{
     flex-direction: column;
 }
+.flex-evenly{
+    justify-content: space-evenly;
+}
 
-.flex-align-top{
+.justify-normal{
     justify-content: normal;
+}
+
+.flex-top{
+    align-items: flex-start;
+}
+
+.flex-self-end{
+    align-self:end;
 }
 
 .marge{
@@ -173,11 +184,11 @@ nav a:hover{
     padding: 5px;
 }
 
-#scores a:hover{
+#scores a:hover, .scores:hover{
     background-color: RGBA(255,255,255,0.5);
 }
 
-#scores a div{
+#scores a div, .scores div{
     margin: auto 15px;
 
 }
@@ -220,6 +231,9 @@ nav a:hover{
     background-color: RGB(0,0,255);
     display: inline-block;
     margin-bottom: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 }
 
 

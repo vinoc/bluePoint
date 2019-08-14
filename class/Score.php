@@ -8,7 +8,9 @@ class Score
     private $_idPlayer;
     private $_login;
     private $_duree;//Durée de la partie
+    private $_nbPoints;
     private $_difficulty;
+    private $_timestamp;
     private $_duel;
     private $_idPlayer2;
     private $_login2;
@@ -119,12 +121,29 @@ class Score
             $this->_errors[] = 'duree';
         }
 
+        if(isset($data['nbPoints'])){
+            $this->setNbPoints($data['nbPoints']);
+        }
+        else{
+            $this->setNbPoints(3);
+            $this->_errors[] = 'nbPoints';
+        }
+
+
         if(isset($data['difficulty'])){
             $this->setDifficulty($data['difficulty']);
             }
         else{
             $this->setDifficulty(0);
             $this->_errors[] = 'difficulty';
+        }
+
+        if(isset($data['timestamp'])){
+            $this->setTimestamp($data['timestamp']);
+            }
+        else{
+            $this->setTimestamp(0);
+            $this->_errors[] = 'timestamp';
         }
 
         if(isset($data['dateProvocation'])){
@@ -161,6 +180,12 @@ class Score
         $this->_difficulty = $difficulty;
     }
 
+    public function setTimestamp(string $timestamp)
+    {
+        $this->_timestamp = $timestamp;
+    }
+
+
     public function setDuel(bool $duel)
     {
         $this->_duel = $duel;
@@ -171,6 +196,15 @@ class Score
         $this->_duree = $duree;
     }
 
+    public function setNbPoints(int $nbpoints){
+        if($nbpoints ==3 OR $nbpoints == 6 OR $nbpoints ==9){
+            $this->_nbPoints = $nbpoints;
+        }
+        else{
+            $this->_nbPoints = 3;
+            $this->_errors[] = 'nbPoints';
+        }
+}
     public function setIdPlayer2(int $idPlayer2)
     {
         $this->_idPlayer2 = $idPlayer2;
@@ -217,9 +251,17 @@ class Score
         return htmlspecialchars($this->_duree);
     }
 
+    public function getNbPoints():int{
+        return $this->_nbPoints;
+    }
+
     public function getDifficulty():int
     {
         return htmlspecialchars($this->_difficulty);
+    }
+
+    public function getTimestamp():string {
+        return $this->_timestamp;
     }
 
     public function isDuel(): bool

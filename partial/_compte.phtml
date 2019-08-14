@@ -1,0 +1,52 @@
+<?php
+?>
+
+<main id="account">
+    <h1>Vous</h1>
+    <section id="info">
+        <h2>vos informations</h2>
+    <div class="button">Modifier vos informations</div>
+        <article>
+            <form action="updateAccount" method="post" class="flex flex-wrap flex-top flex-evenly">
+                <div class="flex flex-column ">
+                    <p>identifiant et contact</p>
+                    <label FOR="login">Login</label>
+                    <input type="text" id="login" name="login" value="<?php echo $member->getLogin();?>">
+
+                    <label FOR="mail">Mail</label>
+                    <input type="text"   id="mail" name="mail" value="<?php echo $member->getMailAdress();?>">
+                </div>
+
+            <div class="flex flex-column">
+                <p>Changer de mot de passe:</p>
+                <label FOR="passwordOld">actuel</label>
+                <input type="password" id="passwordOld" name="passwordOld" placeholder="Mot de passe">
+
+                <label FOR="passwordNew">Nouveau</label>
+                <input type="text" id="passwordNew" name="passwordNew" placeholder="Nouveau Mot de passe">
+                <label FOR="passwordNewVerif">Nouveau</label>
+                <input type="text" id="passwordNewVerif" name="passwordNewVerif" placeholder="verification">
+            </div>
+            <input type="submit" class="flex-self-end" value="Mettre à jours">
+            </form>
+
+        </article>
+
+    </section>
+    <section id="myScores">
+        <h2>Vos scores</h2>
+<article>
+    <ul>
+        <?php foreach ($myScores as $score): ?>
+            <li class="flex gloriaHallelujah scores">
+                    <div class="border"><?php echo $score->getScore(); ?></div>
+                    <div class="border"><?php echo $score->getTimestamp(); ?></div>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</article>
+
+    </section>
+
+</main>

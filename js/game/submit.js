@@ -17,8 +17,8 @@ function saveScore() {
 
                 if (ajax.readyState === 4 && ajax.status === 200) {
                         //enable for debug
-                        //var data = ajax.responseText;
-                        //console.log(data);
+                        // var data = ;
+                        document.querySelector('#debug').innerHTML = ajax.responseText;
                 }
         }
 

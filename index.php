@@ -60,7 +60,7 @@ elseif (file_exists(FORM_PATH.''.$openingPage.'.php')){
     require (FORM_PATH.''.$openingPage.'.php');
 }
 else{
-    require (PARTIAL_PATH.'_404.php');
+    require (PARTIAL_PATH.'_404.phtml');
 }
 
 

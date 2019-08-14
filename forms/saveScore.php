@@ -7,6 +7,7 @@ if($member->isIdentify()) {
 
     $scoreManager = new ScoreManager();
     $score = new score($data);
+    debug($data);
 
 
 
