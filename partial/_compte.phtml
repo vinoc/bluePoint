@@ -13,19 +13,20 @@
                     <label FOR="login">Login</label>
                     <input type="text" id="login" name="login" value="<?php echo $member->getLogin();?>">
 
-                    <label FOR="mail">Mail</label>
-                    <input type="text"   id="mail" name="mail" value="<?php echo $member->getMailAdress();?>">
+                    <label FOR="mailAdress">Mail</label>
+                    <input type="text"   id="mailAdress" name="mailAdress" value="<?php echo $member->getMailAdress();?>">
                 </div>
 
             <div class="flex flex-column">
+                <p class="error"><?php echo $error; ?></p>
                 <p>Changer de mot de passe:</p>
-                <label FOR="passwordOld">actuel</label>
-                <input type="password" id="passwordOld" name="passwordOld" placeholder="Mot de passe">
+                <label FOR="password">actuel</label>
+                <input type="password" id="password" name="password" placeholder="Mot de passe">
 
                 <label FOR="passwordNew">Nouveau</label>
-                <input type="text" id="passwordNew" name="passwordNew" placeholder="Nouveau Mot de passe">
+                <input type="password" id="passwordNew" name="passwordNew" placeholder="Nouveau Mot de passe">
                 <label FOR="passwordNewVerif">Nouveau</label>
-                <input type="text" id="passwordNewVerif" name="passwordNewVerif" placeholder="verification">
+                <input type="password" id="passwordNewVerif" name="passwordNewVerif" placeholder="verification">
             </div>
             <input type="submit" class="flex-self-end" value="Mettre à jours">
             </form>

@@ -65,6 +65,7 @@ class Member
                 $this->setPassword($donnees['password']);
             }
             else{
+                $this->setPassword('');
                 $this->errors[] = 'mot de passe';
             }
 

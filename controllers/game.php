@@ -8,7 +8,9 @@ else {
     $myBestScore = ($myBestScore == false) ? 0 : $myBestScore[0];
 }
 
+$duel = (isset($_GET['id']) AND intval($_GET['id']) >= 1)? intval($_GET['id']) : 0;
 
+debug($duel);
 
 
 

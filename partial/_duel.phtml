@@ -1,0 +1,24 @@
+<?php
+?>
+
+<main id="selectDuel">
+    <h1>Match en duel</h1>
+    <section>
+        <?php foreach ($members as $user): ?>
+        <a href="game?id=<?php echo $user->getID();?>">
+        <article>
+            <?php echo $user->getLogin();?>
+
+            <ul class="flex flex-evenly" >
+                <?php foreach ($scoreManager->allMyBestsScores($user->getId()) as $score) : ?>
+                <li class="<?php echo $score->getDifficultyClass(); ?>">
+                    <p><?php echo $score->getNbPoints(); ?>X<?php echo $score->getNbPoints(); ?></p>
+                    <p><?php echo $score->getScore();?></p>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </article>
+        </a>
+        <?php endforeach;?>
+    </section>
+</main>

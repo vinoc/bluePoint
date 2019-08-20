@@ -22,7 +22,7 @@ function bdd()
 
 }
 
-function recupererErreur($nomDuChamp)
+function getErrors($nomDuChamp)
 {
     if (empty($_SESSION['errors'][$nomDuChamp]))
     {
@@ -33,7 +33,6 @@ function recupererErreur($nomDuChamp)
     unset($_SESSION['errors'][$nomDuChamp]);
     return $error;
 }
-
 
 function connecting()
 {
@@ -53,10 +52,6 @@ function connecting()
 
 }
 
-
-
-
-
 function chargerClasse($classe)
 {
     require 'class/' .ucfirst ($classe) .'.php'; // On inclut la classe correspondante au paramètre passé. Le fichier doit porter le nom de la class qu'il contient !
@@ -65,15 +60,11 @@ function chargerClasse($classe)
 spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
 
 
-
-
 function redirection($destination)
 {
-    header("location: $destination");
+    header("location: ".HOST."$destination");
     die();
 }
-
-
 
 function debug($variable, $die = 0)
 {
@@ -86,14 +77,13 @@ function debug($variable, $die = 0)
         echo "<br />";
 }
 
-
 function devOrProd(): bool
 {
     if(STATE_DEV == "dev"){
-        return false;
+        return true;
     }
     else{
-        return true;
+        return false;
     }
 }
 
@@ -102,5 +92,21 @@ function scoreRandom():array
     $tab['niveau'] = random_int(1,3);
     $tab['nbPoints'] = random_int(1,3)*3;
     return $tab;
+}
+
+function memberOnly(object $member, string $redirection){
+    if($member->getPermission() == 'visitor'){
+        redirection($redirection);
+    }
+}
+
+function errorPHP($err_severity, $err_msg, $err_file, $err_line, array $err_context){
+    if(devOrProd()) {
+        echo '<div class="error"><p> erreur N°' . $err_severity . '</p>
+        <p>Message: ' . $err_msg . '</p>
+        <p>fichier: ' . $err_file . '</p>
+        <p>ligne: ' . $err_line . '</p>
+        </div>';
+    }
 }
 ?>

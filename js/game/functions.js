@@ -144,5 +144,5 @@ function endGame(){
     scoresFinal.classList.remove('hidden');
     saveScore();
     game.resetGame();
-    console.log(game);
+
 }

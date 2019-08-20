@@ -17,8 +17,6 @@ class MemberManager
 
     }
 
-
-
     public function connectionLogin(string $login,string $password){
         if ($login !== '0' OR $password !== '0') {
 
@@ -63,8 +61,6 @@ class MemberManager
 
     }
 
-
-
     public function connexionCookie(int $id,string $passwordTemp):object
     {
 
@@ -90,8 +86,6 @@ class MemberManager
 
     }
 
-
-
     public function newMember(object $member):bool
     {
         if ($member->getIdentify() !== false){
@@ -106,12 +100,44 @@ class MemberManager
 
     }
 
+    public function MemberUpdate(object $member, object $memberUpdate):bool
+    {
+//$2y$10$DQtzdGSLbq5vpYPzauVMduD2dQabbtJGBbqjTnZAuLyJCyBknzQ5K
+
+            if($memberUpdate->getPassword()!=null) {
+                $req = $this->bdd->prepare(' UPDATE `members` SET `login`=:login, `mailAdress`=:mailAdress,`password`=:password WHERE `id`=:id');
+                $req->bindValue(':password', password_hash($memberUpdate->getPassword(),PASSWORD_DEFAULT), PDO::PARAM_STR );
+            }
+            else{
+                $req = $this->bdd->prepare(' UPDATE `members` SET `login`=:login,`mailAdress`=:mailAdress WHERE `id`=:id');
+            }
+
+            $req->bindValue(':login', $memberUpdate->getLogin(), PDO::PARAM_STR);
+
+            $req->bindValue(':mailAdress', $memberUpdate->getMailAdress(), PDO::PARAM_STR);
+            $req->bindValue(':id', $member->getID(), PDO::PARAM_INT);
+debug($req);
+            return $req->execute();
+
+
+    }
+
     public function memberUpdatePasswordTemp(object $member):bool{
         $req = $this->bdd;
         $update = $req->prepare('UPDATE members SET passwordTemp = ? WHERE id = ?');
-        return  $update->execute([$member->getPasswordTemp(), $member->getID()]);;
+        return  $update->execute([$member->getPasswordTemp(), $member->getID()]);
     }
 
+//    get 10 random members,
+    public function randomMembers(){
+        $req = $this->bdd->prepare('SELECT * FROM `members` ORDER BY RAND() LIMIT 10');
+        $req->execute();
+        $members = [];
+        foreach ($req->fetchAll() as $elements){
+            $members[] =new Member($elements);
+        }
+        return $members;
 
+    }
 
 }

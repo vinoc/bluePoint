@@ -185,7 +185,6 @@ class Score
         $this->_timestamp = $timestamp;
     }
 
-
     public function setDuel(bool $duel)
     {
         $this->_duel = $duel;
@@ -197,6 +196,7 @@ class Score
     }
 
     public function setNbPoints(int $nbpoints){
+
         if($nbpoints ==3 OR $nbpoints == 6 OR $nbpoints ==9){
             $this->_nbPoints = $nbpoints;
         }
@@ -205,6 +205,7 @@ class Score
             $this->_errors[] = 'nbPoints';
         }
 }
+
     public function setIdPlayer2(int $idPlayer2)
     {
         $this->_idPlayer2 = $idPlayer2;
@@ -260,6 +261,24 @@ class Score
         return htmlspecialchars($this->_difficulty);
     }
 
+    public function getDifficultyClass():string
+    {
+        switch ($this->_difficulty) {
+            case 1:
+                return 'facile';
+                break;
+            case 2:
+                return 'moyen';
+                break;
+            case 3:
+                return 'difficile';
+                break;
+            default:
+                return 'error';
+        }
+
+    }
+
     public function getTimestamp():string {
         return $this->_timestamp;
     }
@@ -298,6 +317,7 @@ class Score
     {
         return htmlspecialchars($this->_login);
     }
+
     public function getLogin2()
     {
         return htmlspecialchars($this->_login2);

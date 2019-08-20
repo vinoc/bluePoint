@@ -97,8 +97,20 @@ nav li{display: inline-block;}
 .hidden{
     display: none;
 }
-/* HEADER */
-/* Ce qui concerne le header et la nav */
+
+.error{
+    color: darkred;
+}
+
+
+
+
+
+
+
+
+/*-------------------------- HEADER-------------------------- */
+
 
 
 header{
@@ -273,7 +285,25 @@ nav a:hover{
     margin-top : -1px;
 }
 
+/*--------- END THE GAME -----------*/
 
+
+
+
+
+
+/*------------- SELECT DUEL --------------------*/
+#selectDuel li{
+    border: 2px solid red;
+    width: 100%;
+}
+
+
+#selectDuel a{
+    color: black;
+    text-decoration: none;
+}
+/*------------ END  SELECT DUEL -----------------*/
 
 /*-------- ERROR 404 ---------*/
 #error404 video{

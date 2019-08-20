@@ -100,4 +100,30 @@ class ScoreManager
 
         return $req->fetchAll();
     }
+
+     public function allMyBestsScores($id)
+     {
+         $scores = [];
+         for ($difficulty = 1; $difficulty < 4; $difficulty++) {
+
+            for($nbPoints = 3; $nbPoints<10; $nbPoints+=3) {
+
+                $req = $this->_bdd->prepare('SELECT * FROM `scores`  WHERE `idPlayer` = :id AND `difficulty` = :difficulty AND nbPoints = :nbPoints  ORDER BY `score` DESC LIMIT 1 ');
+
+                $req->bindValue(':id', $id, PDO::PARAM_INT);
+                $req->bindValue(':difficulty', $difficulty, PDO::PARAM_INT);
+                $req->bindValue(':nbPoints', $nbPoints, PDO::PARAM_INT);
+
+                 $req->execute();
+                 $tab = $req->fetchAll();
+                 foreach ($tab as $element) {
+                     $scores[] = new Score($element);
+
+                }
+
+            }
+
+        }
+         return $scores;
+     }
 }

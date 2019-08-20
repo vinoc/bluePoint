@@ -7,13 +7,6 @@
  */
 
 
-
-
-
-
-
-
-
 //call function files (include automatic class call)
 require_once ('config/config.php');
 require_once (FUNCTIONS_PATH.'functions.php');
@@ -23,7 +16,7 @@ session_start();
 
 //Show error if in local (127.0.0.1||localhost)
 ini_set('display_error', devOrProd());
-
+set_error_handler('errorPHP', E_ALL);
 //Preparing Member(user information)
 $member = connecting();
 

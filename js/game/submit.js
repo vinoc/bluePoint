@@ -9,7 +9,8 @@ function saveScore() {
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 // Send Data
-        ajax.send('difficulty='+ encodeURIComponent(game.getDifficulty()) +'&nbPoint='+ encodeURIComponent(game.getNbPoint())+'&score='+ encodeURIComponent(game.getScore()));
+        console.log(game.getNbPoint());
+        ajax.send('difficulty='+ encodeURIComponent(game.getDifficulty()) +'&nbPoints='+ encodeURIComponent(game.getNbPoint())+'&score='+ encodeURIComponent(game.getScore()));
 
 // Answer PHP
         ajax.onreadystatechange = function () {
@@ -17,8 +18,7 @@ function saveScore() {
 
                 if (ajax.readyState === 4 && ajax.status === 200) {
                         //enable for debug
-                        // var data = ;
-                        document.querySelector('#debug').innerHTML = ajax.responseText;
+                         document.querySelector('#debug').innerHTML = ajax.responseText;
                 }
         }
 
