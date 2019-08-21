@@ -294,7 +294,7 @@ nav a:hover{
 
 /*------------- SELECT DUEL --------------------*/
 #selectDuel li{
-    border: 2px solid red;
+    border: 2px solid #a9cce3;
     width: 100%;
 }
 
@@ -302,6 +302,10 @@ nav a:hover{
 #selectDuel a{
     color: black;
     text-decoration: none;
+}
+
+#waitingDuel li{
+    padding: 15px;
 }
 /*------------ END  SELECT DUEL -----------------*/
 

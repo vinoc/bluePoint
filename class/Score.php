@@ -36,7 +36,6 @@ class Score
                 $this->setIdPlayer2($data['idPlayer2']);
             }
             else{
-                $this->setIdPlayer2(null);
                 $this->_errors[] = 'idPlayeur2';
             }
 
@@ -44,7 +43,6 @@ class Score
                 $this->setScore2($data['score2']);
             }
             else{
-                $this->setScore2(null);
                 $this->_errors[] = 'score2';
             }
 
@@ -56,19 +54,17 @@ class Score
                 $this->_errors[] = 'duel';
             }
 
-            if(isset($data['dateProvocation'])){
-                $this->setDateProvocation($data['dateProvocation']);
+            if(isset($data['dateDuel'])){
+                $this->setDateProvocation($data['dateDuel']);
             }
             else{
-                $this->setDateProvocation(null);
-                $this->_errors[] = 'dateProvocation';
+                $this->_errors[] = 'dateDuel';
             }
 
             if(isset($data['dateBack'])){
                 $this->setDateBack($data['dateBack']);
             }
             else{
-                $this->setDateBack(null);
                 $this->_errors[] = 'dateBack';
             }
 
@@ -76,7 +72,6 @@ class Score
                 $this->setLogin2($data['login2']);
             }
             else{
-                $this->setLogin2(null);
                 $this->_errors[] = 'login2';
             }
         }
@@ -93,7 +88,7 @@ class Score
             $this->setScore($data['score']);
             }
         else{
-            $this->setScore(null);
+            $this->setScore(0);
             $this->_errors[] = 'score';
         }
 
@@ -109,7 +104,6 @@ class Score
             $this->setLogin($data['login']);
         }
         else{
-            $this->setLogin(0);
             $this->_errors[] = 'login';
         }
 
@@ -134,7 +128,7 @@ class Score
             $this->setDifficulty($data['difficulty']);
             }
         else{
-            $this->setDifficulty(0);
+            $this->setDifficulty(1);
             $this->_errors[] = 'difficulty';
         }
 
@@ -142,7 +136,6 @@ class Score
             $this->setTimestamp($data['timestamp']);
             }
         else{
-            $this->setTimestamp(0);
             $this->_errors[] = 'timestamp';
         }
 
@@ -150,7 +143,6 @@ class Score
             $this->setDateProvocation($data['dateProvocation']);
             }
         else{
-            $this->setDateProvocation('');
             $this->_errors[] = 'dateProvocation';
         }
     }
@@ -298,7 +290,7 @@ class Score
         return htmlspecialchars($this->_score2);
     }
 
-    public function getDateProvocation():int
+    public function getDateProvocation():string
     {
         return $this->_dateProvocation;
     }

@@ -57,8 +57,9 @@ else{
 }
 
 
-require (PARTIAL_PATH.'_footer.phtml');
-
+if($openingPage != 'saveScore') {
+    require(PARTIAL_PATH . '_footer.phtml');
+}
 
 
 

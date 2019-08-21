@@ -3,21 +3,24 @@
 
 $data = $_POST;
 
-if($member->isIdentify()) {
+if($member->isIdentify()){
 
     $scoreManager = new ScoreManager();
     $score = new score($data);
-    debug($data);
-
 
 
     $score->setIdPlayer($member->getID());
 
-    if($score->isDuel()){
+    if($_SESSION['duel'] != ''){
+        $score->setDuel(true);
+        $score->setIdPlayer2($_SESSION['duel']['id']);
         $scoreManager->saveDuel($score);
+        $_SESSION['duel']['score']= $score->getScore();
+        echo 'duel';
     }
     else{
         $scoreManager->saveScore($score);
     }
 }
+
 

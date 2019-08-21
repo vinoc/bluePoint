@@ -3,6 +3,8 @@ function prepareGame(){
     if(game.getStarted()===false) {
         game.setNbPoints(document.querySelector('select').value);
         game.setDifficulty(document.querySelector('#niveau').value);
+
+
         // Faire apparaitre l'aire de jeu
         classToggle(gameArea, 'hidden');
         // Lancement du compte à rebour avant le jeu

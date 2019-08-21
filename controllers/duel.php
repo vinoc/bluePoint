@@ -1,9 +1,11 @@
 <?php
 if(!$member->isIdentify()){
-    $myBestScore = '<a href="connexion" class="button">Connexion requise</a>';
+   redirection('connexion');
 }
 else {
     $memberManager = new MemberManager();
+
+
     $members = $memberManager->randomMembers();
     $scoreManager = new ScoreManager();
     $scores = [];
@@ -11,6 +13,7 @@ else {
         $scores[$user->getId()] = $scoreManager->allMyBestsScores($user->getId());
     }
 
+    $duelScores = $scoreManager->myWaitingDuel($member->getID());
 }
 
 

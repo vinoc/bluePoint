@@ -3,7 +3,32 @@
 
 <main id="selectDuel">
     <h1>Match en duel</h1>
-    <section>
+
+    <section id="waitingDuel">
+        <h2>Vos duels en attente</h2>
+        <?php foreach ($duelScores as $duel): ?>
+        <a href="game?duel=<?php echo $duel->getId(); ?>">
+            <article class="<?php echo $duel->getDifficultyClass(); ?>">
+                <ul class="flex flex-evenly">
+                    <li>
+                        <?php echo $duel->getLogin()?>
+                    </li>
+                    <li>
+                        <?php echo $duel->getScore(); ?>
+                    </li>
+                    <li>
+                        <?php echo $duel->getNbPoints().'X'.$duel->getNbPoints(); ?>
+                    </li>
+                    <li>
+                        <?php echo $duel->getDateProvocation();?>
+                    </li>
+                </ul>
+            </article>
+        </a>
+        <?php endforeach;?>
+    </section>
+    <section id="setDuel">
+        <h2>Provoquer en duel</h2>
         <?php foreach ($members as $user): ?>
         <a href="game?id=<?php echo $user->getID();?>">
         <article>

@@ -1,18 +1,19 @@
 <main>
     <h1>blue Point</h1>
+    <div id="duel" <?php echo $showDuel; ?>> <?php echo $duelLogin; ?></div>
     <p>le but du jeu est simple: Cliquez sur le plus grand nombre de point bleu <span class="bluePoint"></span> dans le temps impartie</p>
     <section id="reglages">
         <article>
             <div>
                 <label FOr="nbCase">Selectionnez le nombre de case voulu</label>
-                <select id="nbCase" name="nbCase">
+                <select <?php echo $disable; ?>  id="nbCase" name="nbCase">
                     <option value="3">3X3</option>
                     <option value="6">6X6</option>
                     <option value="9">9X9</option>
                 </select>
 
                 <label FOR="niveau">Difficulté</label>
-                <select id="niveau" name="niveau">
+                <select <?php echo $disable; ?> id="niveau" name="niveau">
                     <option value="1">Facile</option>
                     <option value="2">Moyen</option>
                     <option value="3">Difficile</option>

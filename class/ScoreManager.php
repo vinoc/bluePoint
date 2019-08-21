@@ -71,15 +71,13 @@ class ScoreManager
 
     public function saveDuel($score)
     {
-        if (!$score->isDuel()) {
-            return false;
-        }
 
-        $req = $this->_bdd->prepare('INSERT INTO `duels`( `idPlayer1`, `idPlayer2`, `scorePlayer1`, `difficulty`) VALUES (:idPlayer1,:idPlayer2, :scorePlayer1, :diffuculty)');
-        $req->bindValue(':idPlayer1', $score->_idPlayer(), PDO::PARAM_INT);
-        $req->bindValue(':idPlayer2', $score->_idPlayer2(), PDO::PARAM_INT);
-        $req->bindValue(':score', $score->getScore(), PDO::PARAM_INT);
+        $req = $this->_bdd->prepare('INSERT INTO `duels`( `idPlayer1`, `idPlayer2`, `scorePlayer1`, `difficulty`, `nbPoints`) VALUES (:idPlayer1,:idPlayer2, :scorePlayer1, :difficulty, :nbPoints)');
+        $req->bindValue(':idPlayer1', $score->getIdPlayer(), PDO::PARAM_INT);
+        $req->bindValue(':idPlayer2', $score->getIdPlayer2(), PDO::PARAM_INT);
+        $req->bindValue(':scorePlayer1', $score->getScore(), PDO::PARAM_INT);
         $req->bindValue(':difficulty', $score->getDifficulty(), PDO::PARAM_INT);
+        $req->bindValue(':nbPoints', $score->getNbPoints(), PDO::PARAM_INT);
 
         return $req->execute();
 
@@ -101,7 +99,7 @@ class ScoreManager
         return $req->fetchAll();
     }
 
-     public function allMyBestsScores($id)
+     public function allMyBestsScores(int $id):array
      {
          $scores = [];
          for ($difficulty = 1; $difficulty < 4; $difficulty++) {
@@ -126,4 +124,41 @@ class ScoreManager
         }
          return $scores;
      }
+
+     public function myWaitingDuel(int $id):array {
+        $req=$this->_bdd->prepare('SELECT duels.id, `idPlayer1`,`scorePlayer1`,`scorePlayer2`, members.login, `dateDuel`,`dateBack`,`difficulty`,`nbPoints` FROM `duels` INNER JOIN members ON members.id = `idPlayer1`
+WHERE `idPlayer2`= :idPlayer2 AND ISNULL(`scorePlayer2`) = 1 ');
+
+        $req->bindValue(':idPlayer2', $id, PDO::PARAM_INT);
+
+        $req->execute();
+
+        $scores=[];
+        foreach ($req->fetchAll() as $value){
+
+            $value['duel']= true;
+            $scores[] = new Score($value);
+        }
+
+        return $scores;
+     }
+
+     public function oneDuel(int $idDuel) {
+        $req=$this->_bdd->prepare('SELECT duels.id, members.login, `scorePlayer1` FROM `duels` 
+INNER JOIN members ON members.id = `idPlayer1`
+WHERE duels.id = :idDuel AND ISNULL(`scorePlayer2`) =1');
+
+        $req->bindValue(':idDuel', $idDuel, PDO::PARAM_INT);
+
+        $req->execute();
+        $score= $req->fetch();
+        if($score == false){
+            return  false;
+        }
+        else {
+            return new Score($score);
+        }
+
+     }
+
 }
