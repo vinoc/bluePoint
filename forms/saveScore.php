@@ -11,16 +11,24 @@ if($member->isIdentify()){
 
     $score->setIdPlayer($member->getID());
 
-    if($_SESSION['duel'] != ''){
+    //echo id of duel, or 'ok' for normal game
+    if(isset($_SESSION['duel']['id']) AND $_SESSION['duel']['id'] != ''){
         $score->setDuel(true);
         $score->setIdPlayer2($_SESSION['duel']['id']);
-        $scoreManager->saveDuel($score);
-        $_SESSION['duel']['score']= $score->getScore();
-        echo 'duel';
+        echo  $scoreManager->saveDuel($score);
+    }
+    elseif (isset($_SESSION['duel']['idBack']) AND $_SESSION['duel']['idBack'] != ''){
+        $score->setId($_SESSION['duel']['idBack']);
+        echo $scoreManager->updateDuel($score);
     }
     else{
         $scoreManager->saveScore($score);
+        echo 'ok';
     }
+
+}
+else{
+    echo 'ok';
 }
 
 

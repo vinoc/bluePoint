@@ -3,11 +3,39 @@
 
 <main id="duelEnd">
     <section>
-        <article>
-            <p>Votre duel avec <?php echo $duelLogin; ?> est enregistré.</p>
-            <p>Fera t-il mieux que vos <span class="gloriaHallelujah"><?php echo $duelScore; ?></span> ?</p>
+        <article class="<?php echo $score->getDifficultyClass(); ?> center">
+            <ul class="flex flex-evenly">
+                <li>
+                    <?php echo $score->getLogin()?>
+                </li>
 
-            <a href="duel" class="button">Un autre duel ?</a>
+                <li>
+                    <?php echo $score->getLogin2()?>
+                </li>
+                <li>
+                    <?php echo $score->getNbPoints().'X'.$score->getNbPoints(); ?>
+                </li>
+                <li>
+                    <?php echo $score->getDateProvocation()?>
+                </li>
+
+            </ul>
+            <ul class="flex flex-evenly">
+                <li>
+                    <?php echo $score->getScore(); ?>
+                </li>
+
+                <li>
+                    <?php echo $score->getScore2(); ?>
+                </li>
+                <li>
+                    <?php echo $score->getDifficultyClass();?>
+                </li>
+                <li>
+                    <?php echo $score->getDateBack();?>
+                </li>
+            </ul>
         </article>
+        <a href="duel" class="button">Un autre duel ?</a>
     </section>
 </main>

@@ -1,9 +1,19 @@
 <?php
-if($_SESSION['duel'] ==[]){
-    redirection('duel');
+if($_SESSION['duel'] ===[]){
+    //redirection('duel');
 }
-$duelLogin = $_SESSION['duel']['login'];
-$duelScore = $_SESSION['duel']['score'];
+
+if(!isset($_GET['id']) OR intval($_GET['id']) <=0) {
+    //redirection('duel');
+    echo 'redirection';
+}
+else{
+    $scoreManager = new ScoreManager();
+    $score = $scoreManager->onetDuel($_GET['id']);
+}
+
+
+
 
 $_SESSION['duel'] = [];
 

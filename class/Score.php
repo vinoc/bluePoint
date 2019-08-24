@@ -23,15 +23,7 @@ class Score
 
     public function __construct($data)
     {
-
-        if(!isset($data['duel']) OR $data['duel']==false){
-            $this->_idPlayer2= null;
-            $this->_score2 = null;
-            $this->_duel = false;
-            $this->_dateProvocation= null;
-            $this->_dateBack = null;
-            $this->_login2 = null;
-        }else{
+   //player 2
             if(isset($data['idPlayer2'])){
                 $this->setIdPlayer2($data['idPlayer2']);
             }
@@ -39,10 +31,11 @@ class Score
                 $this->_errors[] = 'idPlayeur2';
             }
 
-            if(isset($data['score2'])){
-                $this->setScore2($data['score2']);
+            if(isset($data['scorePlayer2'])){
+                $this->setScore2($data['scorePlayer2']);
             }
             else{
+                $this->setScore2('xx');
                 $this->_errors[] = 'score2';
             }
 
@@ -65,6 +58,7 @@ class Score
                 $this->setDateBack($data['dateBack']);
             }
             else{
+                $this->setDateBack('xxxx-xx-xx xx:xx:xx ');
                 $this->_errors[] = 'dateBack';
             }
 
@@ -74,7 +68,7 @@ class Score
             else{
                 $this->_errors[] = 'login2';
             }
-        }
+  //end player2
 
         if(isset($data['id'])){
             $this->setId($data['id']);
@@ -91,6 +85,10 @@ class Score
             $this->setScore(0);
             $this->_errors[] = 'score';
         }
+        if(isset($data['scorePlayer1'])){
+            $this->setScore($data['scorePlayer1']);
+        }
+
 
         if(isset($data['idPlayer'])){
             $this->setIdPlayer($data['idPlayer']);
@@ -207,7 +205,7 @@ class Score
            $this->_login2 = $login2;
        }
 
-    public function setScore2(int $score2)
+    public function setScore2($score2)
     {
         $this->_score2 = $score2;
     }
@@ -285,7 +283,7 @@ class Score
         return $this->_idPlayer2;
     }
 
-    public function getScore2():int
+    public function getScore2()
     {
         return htmlspecialchars($this->_score2);
     }
@@ -295,7 +293,7 @@ class Score
         return $this->_dateProvocation;
     }
 
-    public function getDateBack():int
+    public function getDateBack()
     {
         return $this->_dateBack;
     }

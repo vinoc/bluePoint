@@ -8,11 +8,11 @@
 
 class MemberManager
 {
-    protected $bdd;
+    protected $_bdd;
 
     public function __construct()
     {
-        $this->bdd = bdd();
+        $this->_bdd = bdd();
 
 
     }
@@ -21,7 +21,7 @@ class MemberManager
     {
         if ($login !== '0' OR $password !== '0') {
 
-            $req = $this->bdd;
+            $req = $this->_bdd;
             $resultat = $req->prepare('SELECT * FROM members WHERE login = ?');
             $resultat->execute([$login]);
             $data = $resultat->fetch(PDO::FETCH_ASSOC);
@@ -63,7 +63,7 @@ class MemberManager
 
         if ($id !== '0' OR $passwordTemp !== '0') {
 
-            $req = $this->bdd;
+            $req = $this->_bdd;
             $resultat = $req->prepare('SELECT * FROM members WHERE id = ? AND passwordTemp = ?');
             $resultat->execute([$id, $passwordTemp]);
             $data = $resultat->fetch(PDO::FETCH_ASSOC);
@@ -88,7 +88,7 @@ class MemberManager
             return false;
         } else {
             $password = password_hash($member->getPassword(), PASSWORD_DEFAULT);
-            $saveNewMember = $this->bdd->prepare('INSERT INTO members (login, mailAdress, password, permission, first_Date) VALUE (?, ?, ?, ?, ?)');
+            $saveNewMember = $this->_bdd->prepare('INSERT INTO members (login, mailAdress, password, permission, first_Date) VALUE (?, ?, ?, ?, ?)');
             return $saveNewMember->execute([$member->getLogin(), $member->getMailAdress(), $password, $member->getPermission(), date("d-m-y H:i:s")]);
 
         }
@@ -100,10 +100,10 @@ class MemberManager
 //$2y$10$DQtzdGSLbq5vpYPzauVMduD2dQabbtJGBbqjTnZAuLyJCyBknzQ5K
 
         if ($memberUpdate->getPassword() != null) {
-            $req = $this->bdd->prepare(' UPDATE `members` SET `login`=:login, `mailAdress`=:mailAdress,`password`=:password WHERE `id`=:id');
+            $req = $this->_bdd->prepare(' UPDATE `members` SET `login`=:login, `mailAdress`=:mailAdress,`password`=:password WHERE `id`=:id');
             $req->bindValue(':password', password_hash($memberUpdate->getPassword(), PASSWORD_DEFAULT), PDO::PARAM_STR);
         } else {
-            $req = $this->bdd->prepare(' UPDATE `members` SET `login`=:login,`mailAdress`=:mailAdress WHERE `id`=:id');
+            $req = $this->_bdd->prepare(' UPDATE `members` SET `login`=:login,`mailAdress`=:mailAdress WHERE `id`=:id');
         }
 
         $req->bindValue(':login', $memberUpdate->getLogin(), PDO::PARAM_STR);
@@ -118,7 +118,7 @@ class MemberManager
 
     public function memberUpdatePasswordTemp(object $member): bool
     {
-        $req = $this->bdd;
+        $req = $this->_bdd;
         $update = $req->prepare('UPDATE members SET passwordTemp = ? WHERE id = ?');
         return $update->execute([$member->getPasswordTemp(), $member->getID()]);
     }
@@ -126,7 +126,7 @@ class MemberManager
 //    get 10 random members,
     public function randomMembers()
     {
-        $req = $this->bdd->prepare('SELECT * FROM `members` ORDER BY RAND() LIMIT 10');
+        $req = $this->_bdd->prepare('SELECT * FROM `members` ORDER BY RAND() LIMIT 10');
         $req->execute();
         $members = [];
         foreach ($req->fetchAll() as $elements) {
@@ -142,7 +142,7 @@ class MemberManager
             return new Member([]);
         } else {
 
-            $req = $this->bdd->prepare('SELECT id, login FROM `members` WHERE id= :id');
+            $req = $this->_bdd->prepare('SELECT id, login FROM `members` WHERE id= :id');
 
             $req->bindValue(':id', $id, PDO::PARAM_INT);
             $req->execute();
@@ -155,6 +155,33 @@ class MemberManager
 
             }
         }
+    }
+
+    public function getMemberByLogin(string $login):object {
+        $req= $this->_bdd->prepare('SELECT `id`,`login`,`mailAdress` FROM `members` WHERE `login` = :login');
+
+        $req->bindValue(':login', $login, PDO::PARAM_STR);
+
+        $req->execute();
+
+        if($req->fetch() == false){
+            return new Member([]);
+        }
+
+        return new Member($req->fetch());
+    }
+
+    public function getMemberByMailAdress(string $mailAdress):object {
+        $req= $this->_bdd->prepare('SELECT `id`,`login`,`mailAdress` FROM `members` WHERE `mailAdress` = :mailAdress');
+
+        $req->bindValue(':mailAdress', $mailAdress, PDO::PARAM_STR);
+
+        $req->execute();
+
+        if($req->fetch() == false){
+            return new Member([]);
+        }
+        return new Member($req->fetch());
     }
 
 
