@@ -82,9 +82,7 @@ nav li{display: inline-block;}
     justify-content: normal;
 }
 
-.flex-top{
-    align-items: flex-start;
-}
+
 
 .flex-self-end{
     align-self:end;
@@ -313,10 +311,25 @@ nav a:hover{
 }
 /*------------ END  SELECT DUEL -----------------*/
 
-/*-------- ERROR 404 ---------*/
+
+
+
+
+/*----------- FORGOT PASSWORD -------------*/
+
+#answer{
+    margin-top: 15px;
+    color:  #145a32 ;
+}
+/*----------- END FORGOT PASSWORD -------------*/
+
+
+/*------------ ERROR 404 ---------------*/
 #error404 video{
     width: 80%;
 }
+/*------------- ERROR 404 --------------*/
+
 
 /* FOOTER */
 /* Ce qui concerne le footer */

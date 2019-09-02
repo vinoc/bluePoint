@@ -6,16 +6,9 @@
  * Time: 15:50
  */
 
-class MemberManager
+class MemberManager extends BDD
 {
-    protected $_bdd;
 
-    public function __construct()
-    {
-        $this->_bdd = bdd();
-
-
-    }
 
     public function connectionLogin(string $login, string $password)
     {
@@ -110,7 +103,7 @@ class MemberManager
 
         $req->bindValue(':mailAdress', $memberUpdate->getMailAdress(), PDO::PARAM_STR);
         $req->bindValue(':id', $member->getID(), PDO::PARAM_INT);
-        debug($req);
+
         return $req->execute();
 
 
@@ -164,11 +157,12 @@ class MemberManager
 
         $req->execute();
 
-        if($req->fetch() == false){
+        $data = $req->fetch();
+        if($data == false){
             return new Member([]);
         }
 
-        return new Member($req->fetch());
+        return new Member($data);
     }
 
     public function getMemberByMailAdress(string $mailAdress):object {
@@ -182,6 +176,41 @@ class MemberManager
             return new Member([]);
         }
         return new Member($req->fetch());
+    }
+
+
+    public function distractedMember(object $distractedUser, string $distractCode){
+
+        $req = $this->_bdd->prepare('UPDATE `members` SET `distractedUser`=:disctractCode WHERE `id`= :id');
+        $req->bindValue(':disctractCode', $distractCode, PDO::PARAM_STR);
+        $req->bindValue(':id', $distractedUser->getID(), PDO::PARAM_INT);
+
+        $req->execute();
+
+    }
+
+
+
+    public function findDistractedMemberByLinkCode($distractCode){
+        $req = $this->_bdd->prepare('SELECT * FROM `members` WHERE `distractedUser`= :distractCode');
+
+        $req->bindValue(':distractCode', $distractCode, PDO::PARAM_STR);
+
+        $req->execute();
+
+        $result = $req->fetch();
+        return ($result==false) ? new Member([]): new Member($result);
+    }
+
+    public function changeDistractPassword(object $distractedMember){
+        $password = password_hash($distractedMember->getPassword(), PASSWORD_DEFAULT);
+
+        $req = $this->_bdd->prepare('UPDATE `members` SET `password`= :password, `distractedUser` = null WHERE `id`= :id');
+
+        $req->bindValue(':password', $password, PDO::PARAM_STR);
+        $req->bindValue(':id', $distractedMember->getID(), PDO::PARAM_INT);
+
+        $req->execute();
     }
 
 

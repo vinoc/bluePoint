@@ -1,13 +1,8 @@
 <?php
 
 
-class ScoreManager
+class ScoreManager extends BDD
 {
-    private $_bdd;
-
-    public function __construct(){
-        $this->_bdd = bdd();
-    }
 
     public function bestScores(int $difficulty, int $nbPoints):array
     {

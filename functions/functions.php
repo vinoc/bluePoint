@@ -3,24 +3,6 @@
 /**
  * @return PDO
  */
-function bdd()
-{
-    $bddDomaine = BDD_DOMAINE;
-    $bddNom = BDD_NOM;
-    $bddLogin = BDD_LOGIN;
-    $bddMDP = BDD_MDP;
-    $bddHost= "mysql:host=$bddDomaine;dbname=$bddNom;charset=utf8";
-
-    try {
-        $bdd = new PDO($bddHost, $bddLogin, $bddMDP, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        return $bdd;
-    }
-    catch (exeption $e){
-        die('erreur : ' . $e->$getmessage());
-
-    }
-
-}
 
 function getErrors($nomDuChamp)
 {

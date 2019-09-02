@@ -47,7 +47,7 @@ if (file_exists(CONTROLLER_PATH.''.$openingPage.'.php')){
 }
 elseif (file_exists(PARTIAL_PATH.'_'.$openingPage.'.php') )
 {
-    require(PARTIAL_PATH.'_'.$openingPage.'.php');
+    require(PARTIAL_PATH.'_'.$openingPage.'.phtml');
 }
 elseif (file_exists(FORM_PATH.''.$openingPage.'.php')){
     require (FORM_PATH.''.$openingPage.'.php');

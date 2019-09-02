@@ -15,10 +15,10 @@ function verify(e){
 
 
 function send(){
+    document.querySelector('#answer').innerHTML = '';
     var ajax = new XMLHttpRequest();
 
-
-    ajax.open("POST", "forgotPasswordverify", true);
+    ajax.open("POST", "forgotPasswordVerify", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 // Send Data
@@ -26,12 +26,8 @@ function send(){
 
 // Answer PHP
     ajax.onreadystatechange = function () {
-
         if (ajax.readyState === 4 && ajax.status === 200) {
-
-            document.querySelector('#debug').innerHTML = ajax.responseText;
-
+            document.querySelector('#answer').innerHTML = ajax.responseText;
         }
     }
-
 }
