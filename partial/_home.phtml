@@ -19,7 +19,7 @@
             <ul>
                 <?php foreach ($bestScores as $score ):?>
                 <li>
-                    <a href="pageJoueur?id=<?php echo $score->getIdPlayer();?>" class=" flex gloriaHallelujah">
+                    <a href="playerPage?id=<?php echo $score->getIdPlayer();?>" class=" flex gloriaHallelujah">
                         <div><?php echo $score->getLogin(); ?></div>
                         <div><?php echo $score->getScore(); ?></div>
                     </a>

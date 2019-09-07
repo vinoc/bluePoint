@@ -1,0 +1,35 @@
+<?php
+?>
+
+<main id="playerPage">
+    <section id="duels" class="">
+        <?php foreach ($duelListeAll as $duel): ?>
+
+                <article class="<?php echo $duel->getDifficultyClass(); ?>">
+                    <ul class="flex flex-evenly">
+                        <li>
+                            <a href="playerPage?id=<?php echo $duel->getIdPlayer(); ?>" title="page du joueur"><?php echo $duel->getLogin()?> <i class="fas fa-external-link-alt"></i></a>
+                            <a href="playerPage?id=<?php echo $duel->getIdPlayer2(); ?>" title="page du joueur"><?php echo $duel->getLogin2()?> <i class="fas fa-external-link-alt"></i></a>
+                        </li>
+
+                        <li>
+                            <?php echo $duel->getScore(); ?><br>
+                            <?php echo $duel->getScore2(); ?>
+                        </li>
+
+
+                        <li>
+                            <?php echo $duel->getNbPoints().'X'.$duel->getNbPoints(); ?>
+                        </li>
+                        <li>
+                            <?php
+                            $date = $duel->getDateProvocation();
+                            $date= str_replace(' ', '<br>', $date);
+                            echo $date;?>
+                        </li>
+                    </ul>
+                </article>
+
+        <?php endforeach;?>
+    </section>
+</main>

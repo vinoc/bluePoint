@@ -47,7 +47,7 @@ nav li{display: inline-block;}
 
 .button{
     padding: 10px;
-    box-shadow: 0 0 5px  #76d7c4;
+    box-shadow: 0 0 5px #e74c3c ;
     display: inline-block;
     margin-top: 10px;
     color: black;
@@ -90,6 +90,10 @@ nav li{display: inline-block;}
 
 .marge{
     margin: 15px;
+}
+
+.marge-top{
+    margin-top: 15px;
 }
 
 .hidden{
@@ -138,9 +142,8 @@ header div a{
     padding: 5px;
 }
 
-nav li{
-    display: inline-block;
-    margin-top: 5px;
+nav ul{
+    display: flex;
 
 }
 
@@ -152,6 +155,20 @@ nav a:hover{
     background-color: RGBA(0,0,0,0.1);
 }
 
+
+.notification{
+    background-color: red;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+    top: 0;
+    left: 45px;
+}
+
+.duel{
+    position: inherit;
+}
 
 
 
@@ -269,6 +286,10 @@ nav a:hover{
     left: 45%;
 }
 
+#start{
+    margin-top: 25px;
+}
+
 
 
 /*------- THE GAME ------------*/
@@ -296,7 +317,6 @@ nav a:hover{
 
 /*------------- SELECT DUEL --------------------*/
 #selectDuel li{
-    border: 2px solid #a9cce3;
     width: 100%;
 }
 
@@ -323,6 +343,47 @@ nav a:hover{
 }
 /*----------- END FORGOT PASSWORD -------------*/
 
+
+
+
+
+
+
+
+/*---------- PLAYER PAGE ---------------------------*/
+
+#playerPage li a{
+    display: block;
+    text-decoration: none;
+    font-family: 'Special Elite', cursive;
+    color: black;
+    padding: 5px;
+}
+
+#playerPage li a i{
+    font-size: 0.8rem;
+    color: blue;
+}
+/*#playerPage #duels{*/
+/*    display: block;*/
+/*    transition: 1s;*/
+/*}*/
+#playerPage .hidden{
+    display: none;
+    transition: 500ms;
+}
+#playerPage .show{
+    display: block;
+    transition: 500ms;
+}
+
+@keyframes show {
+
+
+}
+@-webkit-keyframes show {
+
+}
 
 /*------------ ERROR 404 ---------------*/
 #error404 video{

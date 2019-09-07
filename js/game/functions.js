@@ -29,7 +29,7 @@ function prepareTable() {
 function bluePoint(points){
     var x= random(0, points.length);
     var y= random(0, points.length);
-   var point=points[y][x]
+   var point=points[x][y];
     point.setColor("RGB(0,0,255)");
     createView(points);
 }

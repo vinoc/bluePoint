@@ -8,8 +8,14 @@ class Mail
     private $_message;
     private $_subject;
 
-    public function __construct(array $data)
+    public function __construct($data)
     {
+        if (isset($data)) {
+            $this->hydrate($data);
+        }
+    }
+
+    public function hydrate(array $data){
         $this->_adressSender = 'hello@cheezpa.com';
         try{
             $this->setMessage($data['message']);
@@ -39,39 +45,21 @@ class Mail
 
     public function sendMail(){
 
-//        $to = $this->_addressRecipient;
+
         $to =$this->_addressRecipient;
         $subject = $this->_subject;
         $message = $this->_message;
 
-//        $headers = array(
-//            'MIMIE-Version' => '1.0',
-//            'From' => $this->_adressSender,
-//            'To' => $this->_addressRecipient,
-//            'Reply-To' => $this->_adressSender,
-////            'X-Mailer' => 'PHP/' . phpversion(),
-//            'Content-Type' => 'text/html',
-//            'charset' => 'utf-8'
-//
-//        );
-
-//        $headers= 'MIME-Version: 1.0';
-//        $headers.='From :'.$this->_adressSender;
-//        $headers.='reply-To : '.$this->_adressSender;
-//        $headers.='X-Mailer: PHP/'.phpversion();
-//
-//        $headers.= 'Content-type: text/html; charset=utf-8';
-
-
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=utf-8';
 
-//        // En-têtes additionnels
         $headers[] = 'To: <'.$this->_addressRecipient.'>';
         $headers[] = 'From: BluePoint <hello@cheezpa.com>';
-       $headers[] = 'Cc: ';
-       $headers[] = 'Bcc: ';
+
 
         mail($to, $subject, $message,  implode("\r\n", $headers));
     }
+
+
+
 }

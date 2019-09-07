@@ -2,14 +2,13 @@
 ?>
 
 <main id="account">
-    <h1>Vous</h1>
+
     <section id="info">
-        <h2>vos informations</h2>
-    <div class="button">Modifier vos informations</div>
+        <h2>Mes informations</h2>
         <article>
             <form action="updateAccount" method="post" class="flex flex-wrap flex-evenly">
                 <div class="flex flex-column ">
-                    <p>identifiant et contact</p>
+                    <p>Identifiant et contact</p>
                     <label FOR="login">Login</label>
                     <input type="text" id="login" name="login" value="<?php echo $member->getLogin();?>">
 
@@ -17,36 +16,43 @@
                     <input type="text"   id="mailAdress" name="mailAdress" value="<?php echo $member->getMailAdress();?>">
                 </div>
 
-            <div class="flex flex-column">
-                <p class="error"><?php echo $error; ?></p>
-                <p>Changer de mot de passe:</p>
-                <label FOR="password">actuel</label>
-                <input type="password" id="password" name="password" placeholder="Mot de passe">
+                <div class="flex flex-column">
+                    <p class="error"><?php echo $error; ?></p>
+                    <p>Changer de mot de passe :</p>
+                    <label FOR="password">Actuel</label>
+                    <input type="password" id="password" name="password" placeholder="Mot de passe actuel">
 
-                <label FOR="passwordNew">Nouveau</label>
-                <input type="password" id="passwordNew" name="passwordNew" placeholder="Nouveau Mot de passe">
-                <label FOR="passwordNewVerif">Nouveau</label>
-                <input type="password" id="passwordNewVerif" name="passwordNewVerif" placeholder="verification">
-            </div>
-            <input type="submit" class="flex-self-end" value="Mettre à jours">
+                    <label FOR="passwordNew">Nouveau</label>
+                    <input type="password" id="passwordNew" name="passwordNew" placeholder="Nouveau Mot de passe">
+                    <label FOR="passwordNewVerif">Nouveau</label>
+                    <input type="password" id="passwordNewVerif" name="passwordNewVerif" placeholder="Vérification">
+                </div>
+
+                <input type="submit" class="flex-self-end" value="Mettre à jour">
+
             </form>
 
         </article>
 
     </section>
     <section id="myScores">
-        <h2>Vos scores</h2>
-<article>
-    <ul>
-        <?php foreach ($myScores as $score): ?>
-            <li class="flex gloriaHallelujah scores">
-                    <div class="border"><?php echo $score->getScore(); ?></div>
-                    <div class="border"><?php echo $score->getTimestamp(); ?></div>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-</article>
+        <h2>Mes scores</h2>
+        <?php foreach ($myScores as $score):
+
+            if($score->getDifficulty() == 1): ?>
+
+            <article>
+                <ul>
+                    <li><?php echo $score->getScore(); ?></li>
+                    <li><?php echo $score->getTimestamp(); ?></li>
+                </ul>
+
+
+
+        </article>
+        <?php endif;
+            endforeach; ?>
+
 
     </section>
 

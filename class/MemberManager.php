@@ -135,7 +135,7 @@ class MemberManager extends BDD
             return new Member([]);
         } else {
 
-            $req = $this->_bdd->prepare('SELECT id, login FROM `members` WHERE id= :id');
+            $req = $this->_bdd->prepare('SELECT `id`,`login`,`mailAdress`, `permission`,`first_date` FROM `members` WHERE id= :id');
 
             $req->bindValue(':id', $id, PDO::PARAM_INT);
             $req->execute();
@@ -190,7 +190,6 @@ class MemberManager extends BDD
     }
 
 
-
     public function findDistractedMemberByLinkCode($distractCode){
         $req = $this->_bdd->prepare('SELECT * FROM `members` WHERE `distractedUser`= :distractCode');
 
@@ -211,6 +210,28 @@ class MemberManager extends BDD
         $req->bindValue(':id', $distractedMember->getID(), PDO::PARAM_INT);
 
         $req->execute();
+    }
+
+    public function noDoubleMember(string $login, string $mail): bool
+    {
+        $req = $this->_bdd->prepare('Select login, mailAdress FROM members WHERE login= :login OR mailAdress = :mail ');
+
+        $req->bindValue(':login', $login, PDO::PARAM_STR);
+        $req->bindValue(':mail', $mail, PDO::PARAM_STR);
+
+        $req->execute();
+        $antiDoublon = $req->fetch();
+
+        if ($antiDoublon !=false) {
+            if ($antiDoublon['login'] == $login) {
+                $_SESSION['errors']['login'] = "Ce login est déjà pris ";
+            }
+            if ($antiDoublon['mail'] == $mail) {
+                $_SESSION['errors']['mail'] = "Un compte existe déjà avec cette adresse mail.";
+            }
+            return true;
+        }
+        return false;
     }
 
 

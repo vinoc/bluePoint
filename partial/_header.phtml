@@ -28,8 +28,9 @@
             <!-- @whitespace
 --><?php if($member->getIdentify()): ?><!-- @whitespace
 
-        --><li>
+        --><li class="duel">
                 <a href="<?php echo HOST; ?>duel" title="Lancer un duel"><i class="fas fa-balance-scale-right"></i></a>
+                <div class="<?php echo $notification; ?>"></div>
             </li>
             <li>
                 <a href="<?php echo HOST; ?>unconnect" title="Deconnexion"><i class="fas fa-sign-out-alt"></i></a>

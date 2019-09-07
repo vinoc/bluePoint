@@ -75,9 +75,12 @@ class ScoreManager extends BDD
         $req->bindValue(':nbPoints', $score->getNbPoints(), PDO::PARAM_INT);
 
         $req->execute();
+
         return $this->_bdd->lastInsertId();
 
     }
+
+
 
     public function myBestScore($id){
         $req = $this->_bdd->prepare('SELECT score FROM `scores` WHERE idPlayer= :idPlayer ORDER BY score DESC LIMIT 1 ');
@@ -133,6 +136,25 @@ WHERE `idPlayer2`= :idPlayer2 AND ISNULL(`scorePlayer2`) = 1 ');
         foreach ($req->fetchAll() as $value){
             $value['duel']= true;
             $scores[] = new Score($value);
+        }
+
+        return $scores;
+     }
+
+     public function myDuels(int $id):array{
+        $req = $this->_bdd->prepare('SELECT members1.login, members1.id, members2.login AS login2, members2.id, duels.*  FROM `duels` 
+INNER JOIN members AS members1 ON members1.id = `idPlayer1`
+INNER JOIN members AS members2 ON members2.id = `idPlayer2`
+WHERE `idPlayer1`= :id  OR `idPlayer2`= :id
+ORDER BY `dateDuel` DESC');
+
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $req->execute();
+        $data = $req->fetchAll();
+        $scores=[];
+        foreach ($data as $score){
+            $scores[] = new Score($score);
         }
 
         return $scores;

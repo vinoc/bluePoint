@@ -15,7 +15,9 @@ $visibiliteAdmin = ($member->getPermission() ==  "admin" ) ? $visible : $hidden;
 
 $urlMonCompte = ($member->getIdentify()) ?   HOST .'compte' : 'home';
 
-
+$scoreManager = new ScoreManager();
+$notification = ($scoreManager->myWaitingDuel($member->getID()) === [])? 'hidden' : 'notification';
+debug($notification);
 
 $titrePage='Le combat, c\'est la vie !';
 

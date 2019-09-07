@@ -12,7 +12,17 @@ $showDuel = 'hidden';
 
 
 $memberManager = new MemberManager();
-$versus = (isset($_GET['id']) AND intval($_GET['id']) >= 1) ? $memberManager->getMember(intval($_GET['id'])) : false;
+
+if(isset($_GET['duel']) AND intval($_GET['duel']) >= 1){
+debug($member->isIdentify());
+    if(!$member->isIdentify()){
+        redirection('connexion');
+    }
+    $versus = $memberManager->getMember(intval($_GET['duel']));
+}
+else{
+    $versus=false;
+}
 
 $scoreManager = new ScoreManager();
 $duelBack = (isset($_GET['duel']) AND intval($_GET['duel']) >= 1) ? $scoreManager->incompletDuel($_GET['duel']): false;
@@ -44,7 +54,7 @@ elseif($duelBack != false){
     $showDuel = '';
     $duelLogin = 'Match retour contre '.$duelBack->getLogin().' qui a fait '. $duelBack->getScore().' points !';
 
-    if($duelBack->getScore2() != ''){
+    if($duelBack->getScore2() != null){
         $duelLogin = 'Ce match a déjà eu lieux !';
         //todo ajouter une redirection vers la page des résultats
     }

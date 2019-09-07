@@ -32,7 +32,10 @@
         <?php foreach ($members as $user): ?>
         <a href="game?id=<?php echo $user->getID();?>">
         <article>
-            <?php echo $user->getLogin();?>
+            <div>
+                <p><?php echo $user->getLogin();?></p>
+                <p>Scores du joueur:</p>
+            </div>
 
             <ul class="flex flex-evenly" >
                 <?php foreach ($scoreManager->allMyBestsScores($user->getId()) as $score) : ?>

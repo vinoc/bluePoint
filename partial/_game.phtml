@@ -2,24 +2,24 @@
 
     <h1>blue Point</h1>
     <div id="duel" <?php echo $showDuel; ?>> <?php echo $duelLogin; ?></div>
-    <p>le but du jeu est simple: Cliquez sur le plus grand nombre de point bleu <span class="bluePoint"></span> dans le temps impartie</p>
+    <p>Le but du jeu est simple : <br>Cliquez sur le plus grand nombre de point bleu <span class="bluePoint"></span> dans le temps imparti</p>
     <section id="reglages">
         <article>
-            <div>
-                <label FOr="nbCase">Selectionnez le nombre de case voulu</label>
+            <div class="flex flex-column">
+                <label FOR="nbCase" class="marge-top">Sélectionnez le nombre de cases :</label>
                 <select <?php echo $disable; ?>  id="nbCase" name="nbCase">
                     <option value="3" <?php echo $nbpointsSelected3; ?>>3X3</option>
                     <option value="6" <?php echo $nbpointsSelected6; ?>>6X6</option>
                     <option value="9" <?php echo $nbpointsSelected9; ?>>9X9</option>
                 </select>
 
-                <label FOR="niveau">Difficulté</label>
+                <label FOR="niveau" class="marge-top">Difficulté :</label>
                 <select <?php echo $disable; ?> id="niveau" name="niveau">
                     <option value="1" <?php echo $difficultySelected1; ?>>Facile</option>
                     <option value="2" <?php echo $difficultySelected2; ?>>Moyen</option>
                     <option value="3" <?php echo $difficultySelected3; ?>>Difficile</option>
                 </select>
-                <div class="button" id="start">demarrer</div>
+                <div class="button marge" id="start">Démarrer</div>
             </div>
 
             <div id="scoresFinal" class="flex scores hidden">
@@ -50,7 +50,7 @@
                     <p><span>0</span></p>
                 </div>
 
-                <div id="bestScore2" class="marge">
+                <div id="bestScore2" class="">
                     <p>Meilleur score </p>
                     <p><span><?php echo $myBestScore; ?></span></p>
                 </div>

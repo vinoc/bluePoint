@@ -8,7 +8,8 @@ $password=$_POST['password'];
 
 $passwordVerification=$_POST['passwordVerification'];
 
-$bdd = bdd();
+//$bdd = new BDD;
+//$bdd=$bdd->_bdd
 
 $_SESSION['errors']= [];
 
@@ -30,33 +31,23 @@ if( !empty($_SESSION['errors']))
     redirection('inscription');
 }
 
+$memberManager = new MemberManager();
 
-$req_antiDoublon = $bdd ->prepare('Select login, mailAdress FROM members WHERE login= ? OR mailAdress = ? ');
-$req_antiDoublon -> execute([$login,$mail]);
-$antiDoublon= $req_antiDoublon->fetch();
+if($memberManager->noDoubleMember($login, $mail) == false){
 
-if(!empty($antiDoublon)){
-    if ($antiDoublon['login'] == $login)
-    {
-        $_SESSION['errors']['login'] = "Ce login est déjà pris ";
-    }
-    if ($antiDoublon['mail'] == $mail )
-    {
-        $_SESSION['errors']['mail'] =" Un compte existe déjà avec cette adresse mail.";
-    }
+    $newMember = new Member([]);
+    $newMember->setLogin($login);
+    $newMember->setMailAdress($mail);
+    $newMember->setPermission('Member');
+    $newMember->setPassword($password);
+
+    $memberManager->newMember($newMember);
+
+    $memberManager->connectionLogin($login, $password);
+    redirection('compte');
+}
+else{
     redirection('inscription');
 }
-
-$member = new Member([]);
-$member->setLogin($login);
-$member->setMailAdress($mail);
-$member->setPermission('Member');
-$member->setPassword($password);
-
-$memberManager = new MemberManager();
-$memberManager->newMember($member);
-
-$memberManager->connectionLogin($login, $password);
-redirection('compte');
 
 ?>

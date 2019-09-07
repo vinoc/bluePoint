@@ -4,9 +4,8 @@ if(!$member->isIdentify()){
 }
 else {
     $memberManager = new MemberManager();
-
-
     $members = $memberManager->randomMembers();
+
     $scoreManager = new ScoreManager();
     $scores = [];
     foreach ($members as $user){
@@ -15,8 +14,6 @@ else {
 
     $duelScores = $scoreManager->myWaitingDuel($member->getID());
 }
-
-
 
 
 

@@ -19,8 +19,6 @@ class BDD
         }
         catch (exeption $e){
             die('erreur : ' . $e->$getmessage());
-
         }
     }
-
 }
