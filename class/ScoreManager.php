@@ -80,8 +80,6 @@ class ScoreManager extends BDD
 
     }
 
-
-
     public function myBestScore($id){
         $req = $this->_bdd->prepare('SELECT score FROM `scores` WHERE idPlayer= :idPlayer ORDER BY score DESC LIMIT 1 ');
         $req->bindValue(':idPlayer', $id, PDO::PARAM_INT);
@@ -91,11 +89,15 @@ class ScoreManager extends BDD
     }
 
     public function myScore($id){
-        $req = $this->_bdd->prepare('SELECT score, timestamp FROM `scores` WHERE idPlayer= :idPlayer ORDER BY timestamp DESC');
+        $req = $this->_bdd->prepare('SELECT * FROM `scores` WHERE idPlayer= :idPlayer ORDER BY timestamp DESC');
         $req->bindValue(':idPlayer', $id, PDO::PARAM_INT);
         $req->execute();
 
-        return $req->fetchAll();
+        $myScores=[];
+        foreach ($req->fetchAll() as $scores){
+            $myScores[] = new Score($scores);
+        }
+        return $myScores;
     }
 
      public function allMyBestsScores(int $id):array
@@ -146,7 +148,7 @@ WHERE `idPlayer2`= :idPlayer2 AND ISNULL(`scorePlayer2`) = 1 ');
 INNER JOIN members AS members1 ON members1.id = `idPlayer1`
 INNER JOIN members AS members2 ON members2.id = `idPlayer2`
 WHERE `idPlayer1`= :id  OR `idPlayer2`= :id
-ORDER BY `dateDuel` DESC');
+ORDER BY `dateDuel` DESC LIMIT 10');
 
         $req->bindValue(':id', $id, PDO::PARAM_INT);
 

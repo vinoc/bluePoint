@@ -6,11 +6,9 @@ if(!$member->isIdentify()){
 $error = getErrors('update');
 
 $scoreManager= new ScoreManager();
-$myScores= [];
 
-foreach ($scoreManager->myScore($member->getID()) as $scores){
-    $myScores[] = new Score($scores);
-}
+$myScores = $scoreManager->myScore($member->getID());
+
 
 
 

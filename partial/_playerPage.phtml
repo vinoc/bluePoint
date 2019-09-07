@@ -2,7 +2,8 @@
 ?>
 
 <main id="playerPage">
-    <section id="duels" class="">
+    <section id="duels">
+        <h2>Les derniers duels de <?php echo $playerPage->getLogin();?> :</h2>
         <?php foreach ($duelListeAll as $duel): ?>
 
                 <article class="<?php echo $duel->getDifficultyClass(); ?>">
@@ -22,14 +23,40 @@
                             <?php echo $duel->getNbPoints().'X'.$duel->getNbPoints(); ?>
                         </li>
                         <li>
-                            <?php
-                            $date = $duel->getDateProvocation();
-                            $date= str_replace(' ', '<br>', $date);
-                            echo $date;?>
+                            <?php echo str_replace(' ', '<br>', $duel->getDateProvocation());?>
                         </li>
                     </ul>
                 </article>
 
         <?php endforeach;?>
+    </section>
+
+    <section id="scores">
+        <h2>Les derniers scores de <?php echo $playerPage->getLogin();?> :</h2>
+        <section id="myScores">
+            <h2>Mes scores</h2>
+            <?php
+            $i=0;
+            foreach ($myScores as $score): ?>
+
+                    <article class="<?php echo $score->getDifficultyClass(); ?>">
+                        <ul class="flex flex-evenly">
+                            <li><?php echo $score->getScore(); ?></li>
+                            <li><?php echo $score->getNbPoints();?>X<?php echo $score->getNbPoints();?></li>
+                            <li><?php echo str_replace(' ', '<br>', $score->getTimestamp());?></li>
+
+                        </ul>
+
+
+
+                    </article>
+                <?php
+             $i++;
+            if($i ==10){
+                break;
+            }
+
+            endforeach; ?>
+
     </section>
 </main>
