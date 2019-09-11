@@ -14,7 +14,6 @@ $showDuel = 'hidden';
 $memberManager = new MemberManager();
 
 if(isset($_GET['duel']) AND intval($_GET['duel']) >= 1){
-debug($member->isIdentify());
     if(!$member->isIdentify()){
         redirection('connexion');
     }
@@ -54,9 +53,9 @@ elseif($duelBack != false){
     $showDuel = '';
     $duelLogin = 'Match retour contre '.$duelBack->getLogin().' qui a fait '. $duelBack->getScore().' points !';
 
-    if($duelBack->getScore2() != null){
+    if($duelBack->getScore2() != 'xx'){
         $duelLogin = 'Ce match a déjà eu lieux !';
-        //todo ajouter une redirection vers la page des résultats
+        redirection('duelEnd');
     }
 
     $_SESSION['duel']['idBack'] = $duelBack->getId();
@@ -103,6 +102,3 @@ if(isset($_GET['duel']) AND intval($_GET['duel']) >= 1){
     $showDuel = (isset($_GET['duel']) AND intval($_GET['duel']) >= 1) ? '' : 'hidden';
 }
 
-echo $header;
-
-require PARTIAL_PATH.'_game.phtml';

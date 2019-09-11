@@ -78,6 +78,10 @@ nav li{display: inline-block;}
     justify-content: space-evenly;
 }
 
+.flex-basis{
+    flex-basis: 100%;
+}
+
 .justify-normal{
     justify-content: normal;
 }

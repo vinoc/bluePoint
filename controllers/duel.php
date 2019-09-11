@@ -15,8 +15,3 @@ else {
     $duelScores = $scoreManager->myWaitingDuel($member->getID());
 }
 
-
-
-echo $header;
-
-require PARTIAL_PATH.'_duel.phtml';

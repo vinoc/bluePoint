@@ -11,6 +11,3 @@ $scoreManager = new ScoreManager();
 $duelListeAll =  $scoreManager->myDuels($playerPage->getID());
 
 $myScores = $scoreManager->myScore($member->getID());
-
-echo $header;
-require (PARTIAL_PATH.'_'.$openingPage.'.phtml');

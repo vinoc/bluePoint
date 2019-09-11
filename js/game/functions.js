@@ -1,9 +1,10 @@
 'use strict'
 function prepareGame(){
     if(game.getStarted()===false) {
-        game.setNbPoints(document.querySelector('select').value);
-        game.setDifficulty(document.querySelector('#niveau').value);
+        game.setNbPoints(selectNbPoints.value);
+        game.setDifficulty(selectDifficulty.value);
 
+        score2.textContent = 0;
 
         // Faire apparaitre l'aire de jeu
         classToggle(gameArea, 'hidden');
@@ -112,6 +113,7 @@ function clickOnPoint(){
 
 function scoreMore(){
     game.setScore(game.getScore()+1);
+
     showScore();
 
 }
@@ -128,6 +130,11 @@ function scoreLess(){
 function showScore(){
     score1.textContent= game.getScore();
     score2.textContent= game.getScore();
+
+    if(bestScore1.textContent< game.getScore()){
+        bestScore1.textContent = game.getScore();
+        bestScore2.textContent = game.getScore();
+    }
     prepareTable();
 }
 
@@ -145,6 +152,5 @@ function endGame(){
     classToggle(theGame, 'hidden');
     scoresFinal.classList.remove('hidden');
     saveScore();
-    game.resetGame();
-
-}
+    pauseBeforeNewGame();
+    }

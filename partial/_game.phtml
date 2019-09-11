@@ -2,11 +2,11 @@
 
     <h1>blue Point</h1>
     <div id="duel" <?php echo $showDuel; ?>> <?php echo $duelLogin; ?></div>
-    <p>Le but du jeu est simple : <br>Cliquez sur le plus grand nombre de point bleu <span class="bluePoint"></span> dans le temps imparti</p>
+    <p>Le but du jeu est simple : <br>Cliques sur le plus grand nombre de point bleu <span class="bluePoint"></span> dans le temps imparti</p>
     <section id="reglages">
         <article>
             <div class="flex flex-column">
-                <label FOR="nbCase" class="marge-top">Sélectionnez le nombre de cases :</label>
+                <label FOR="nbCase" class="marge-top">Sélectionnes le nombre de cases :</label>
                 <select <?php echo $disable; ?>  id="nbCase" name="nbCase">
                     <option value="3" <?php echo $nbpointsSelected3; ?>>3X3</option>
                     <option value="6" <?php echo $nbpointsSelected6; ?>>6X6</option>
@@ -61,9 +61,11 @@
     </section>
     <div id="debug"></div>
 </main>
+
 <script src="js/game/class/Game.js"></script>
 <script src="js/game/time.js"></script>
 <script src="js/game/class/Point.js"></script>
 <script src="js/game/submit.js"></script>
 <script src="js/game/functions.js"></script>
+<script src="js/game/bestScore.js"></script>
 <script src="js/game/main.js"></script>

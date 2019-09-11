@@ -4,7 +4,7 @@
  * @return PDO
  */
 
-function getErrors($nomDuChamp)
+function getErrors(string $nomDuChamp):string
 {
     if (empty($_SESSION['errors'][$nomDuChamp]))
     {

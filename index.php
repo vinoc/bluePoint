@@ -20,33 +20,25 @@ set_error_handler('errorPHP', E_ALL);
 //Preparing Member(user information)
 $member = connecting();
 
-//echo 'member<br />';
-//debug($member);
-//echo 'session member<br />';
-//
-//debug($_SESSION);
-//
-//echo 'cookies<br />';
-//debug($_COOKIE['1234']);
-
-
-
 //prepare the view
 $openingPage = (isset($_GET['url']) AND !empty($_GET['url']) ) ? trim($_GET['url']) : 'home' ;
 $title = $openingPage;
 
 //calling header, but not display yet
-ob_start();
-require (CONTROLLER_PATH.'header.php');
-$header = ob_get_clean();
-
-
+//ob_start();
+//require (CONTROLLER_PATH.'header.php');
+//$header = ob_get_clean();
 
 if (file_exists(CONTROLLER_PATH.''.$openingPage.'.php')){
     require(CONTROLLER_PATH.''.$openingPage.'.php');
+    if(file_exists(PARTIAL_PATH.'_'.$openingPage.'.phtml')){
+        require (CONTROLLER_PATH.'header.php');
+        require (PARTIAL_PATH.'_'.$openingPage.'.phtml');
+    }
 }
 elseif (file_exists(PARTIAL_PATH.'_'.$openingPage.'.php') )
 {
+    echo 'partial';
     require(PARTIAL_PATH.'_'.$openingPage.'.phtml');
 }
 elseif (file_exists(FORM_PATH.''.$openingPage.'.php')){
@@ -57,9 +49,9 @@ else{
 }
 
 
-if($openingPage != 'saveScore') {
+//if($openingPage != 'saveScore') {
     require(PARTIAL_PATH . '_footer.phtml');
-}
+//}
 
 
 

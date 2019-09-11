@@ -234,5 +234,17 @@ class MemberManager extends BDD
         return false;
     }
 
+    public function getplayer2(int $idDuel){
+        $req = $this->_bdd->prepare('SELECT `login`,`mailAdress` FROM `members` 
+INNER JOIN duels ON members.id = duels.idPlayer1 
+WHERE duels.id = :idDuel');
+
+        $req->bindValue(':idDuel', $idDuel, PDO::PARAM_INT);
+
+        $req->execute();
+
+        return new Member($req->fetch());
+    }
+
 
 }

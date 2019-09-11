@@ -60,16 +60,3 @@ switch ($monthNiveauAleatoire){
         $monthNiveauAleatoire = 'difficile';
         break;
 }
-
-
-//Prepare the view
-echo $header;
-
-require(PARTIAL_PATH.'_home.phtml');
-
-
-
-
-
-
-?>

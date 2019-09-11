@@ -12,12 +12,4 @@ else{
     $score = $scoreManager->onetDuel($_GET['id']);
 }
 
-
-
-
 $_SESSION['duel'] = [];
-
-echo $header;
-
-
-require(PARTIAL_PATH.'_duelEnd.phtml');

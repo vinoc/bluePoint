@@ -18,6 +18,3 @@ else {
 }
 
 $_SESSION['distractMember'] = $distractMember;
-
-echo $header;
-require (PARTIAL_PATH.'_'.$openingPage.'.phtml');

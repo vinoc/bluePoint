@@ -80,9 +80,17 @@ class ScoreManager extends BDD
 
     }
 
-    public function myBestScore($id){
-        $req = $this->_bdd->prepare('SELECT score FROM `scores` WHERE idPlayer= :idPlayer ORDER BY score DESC LIMIT 1 ');
+    public function myBestScore(int $id, int $difficulty = 1 , int $nbPoints = 3){
+        $req = $this->_bdd->prepare('SELECT score FROM `scores` 
+WHERE idPlayer= :idPlayer 
+AND `difficulty`= :difficulty
+AND `nbPoints`=:nbPoints
+ORDER BY score DESC LIMIT 1 ');
+
         $req->bindValue(':idPlayer', $id, PDO::PARAM_INT);
+        $req->bindValue(':difficulty', $difficulty, PDO::PARAM_INT);
+        $req->bindValue(':nbPoints', $nbPoints, PDO::PARAM_INT);
+
         $req->execute();
 
         return $req->fetch();
@@ -163,10 +171,11 @@ ORDER BY `dateDuel` DESC LIMIT 10');
      }
 
      public function incompletDuel(int $idDuel) {
-        $req=$this->_bdd->prepare('SELECT duels.id, members.login, `scorePlayer1`, `scorePlayer2`, `difficulty`, `nbPoints`
- FROM `duels` 
+        $req=$this->_bdd->prepare('SELECT duels.id, members.login AS login, members2.login AS login2, `scorePlayer1`, `scorePlayer2`, `difficulty`, `nbPoints`
+FROM `duels` 
 INNER JOIN members ON members.id = `idPlayer1`
-WHERE duels.id = :idDuel AND ISNULL(`scorePlayer2`) =1');
+INNER JOIN members AS members2 ON members2.id = `idPlayer2`
+WHERE duels.id = :idDuel AND ISNULL(`scorePlayer2`) = 1');
 
         $req->bindValue(':idDuel', $idDuel, PDO::PARAM_INT);
 

@@ -14,7 +14,3 @@ $errorPassword = (isset($_SESSION['errors']['password']) AND $_SESSION['errors']
 $errorConnexion = (isset($_SESSION['errors']['connexion']) AND $_SESSION['errors']['connexion'] == true ) ? 'Login ou mot de passe incorrect' : '';
 
 unset($_SESSION['errors']);
-
-echo $header;
-
-require(PARTIAL_PATH.'_connexion.phtml');

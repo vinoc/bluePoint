@@ -23,7 +23,7 @@ if($member->isIdentify()) {
 
         $mail= [];
         $mail['message'] = 'Bonjour '.$memberDuel->getLogin().', <br>
-tu as été provoqué en duel par '.$member->getLogin().'. Feras-tu mieux ?<br>
+Tu as été provoqué en duel par '.$member->getLogin().'. Feras-tu mieux ?<br>
 <a href="'.HOST.'game?duel='.$idDuel.'"><button>Defend ton honneur !</button></a>';
 
         $mail['recipient'] = $memberDuel->getMailAdress();
@@ -35,6 +35,21 @@ tu as été provoqué en duel par '.$member->getLogin().'. Feras-tu mieux ?<br>
     }
     elseif (isset($_SESSION['duel']['idBack']) AND $_SESSION['duel']['idBack'] != ''){
         $score->setId($_SESSION['duel']['idBack']);
+
+        $memberManager = new MemberManager();
+        $memberDuel = $memberManager->getplayer2($score->getId());
+
+        $mail= [];
+        $mail['message'] = 'Bonjour '.$memberDuel->getLogin().', <br>
+Un duel est terminé.<br>
+<a href="'.HOST.'duelEnd?id='.$score->getId().'"><button>Qui a gagné ?</button></a>';
+
+        $mail['recipient'] = $memberDuel->getMailAdress();
+        $mail['subject'] = 'Blue point : Duel !';
+        $mail = new Mail($mail);
+        $mail->sendMail();
+
+
         echo $scoreManager->updateDuel($score);
     }
     else{
@@ -46,5 +61,7 @@ tu as été provoqué en duel par '.$member->getLogin().'. Feras-tu mieux ?<br>
 else{
     echo 'ok';
 }
+
+die();
 
 

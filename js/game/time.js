@@ -48,5 +48,18 @@ function gameTime(){
 
     }
 
+}
 
+// 3 seconds before start a new game. Prevent click on "demarrer" when game disappear
+function pauseBeforeNewGame(){
+    var i=0;
+    var pause=setInterval(function(){
+        if( i>2){
+            game.resetGame();
+            clearInterval(pause);
+        }
+        else {
+            i++;
+        }
+    }, 1000);
 }
