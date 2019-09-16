@@ -7,12 +7,9 @@
 
     <!--    FONTAWSOME-->
     <script src="https://kit.fontawesome.com/0006424b0a.js"></script>
-
-
     <!-- CSS Vendor -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS_URL; ?>/normalize.css" media="all" />
     <!-- CSS Perso -->
-
     <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 
     <link rel="icon" href="<?php echo IMAGE_URL;?>favicon.ico">
@@ -20,14 +17,12 @@
 <body>
 <!--HEADER-->
 <header>
-    <div><p><a   href="<?php echo $urlMonCompte; ?>" title="Mon compte">Bonjour <?php echo $member->getLogin(); ?></a></p></div>
+    <a href="<?php echo $urlMonCompte; ?>" title="Mon compte"><div><p>Bonjour <?php echo $member->getLogin(); ?></p></div></a>
     <nav>
-
         <ul>
             <li>
                 <a href="<?php echo HOST; ?>home" title="accueil"><i class="fas fa-home"></i></a>
-            </li>
-            <!-- @whitespace
+            </li><!-- @whitespace
 --><?php if($member->getIdentify()): ?><!-- @whitespace
 
         --><li class="duel">
@@ -38,22 +33,13 @@
                 <a href="<?php echo HOST; ?>unconnect" title="Deconnexion"><i class="fas fa-sign-out-alt"></i></a>
             </li><!-- @whitespace
 --><?php else: ?><!-- @whitespace
-
         --><li>
                 <a href="<?php echo HOST; ?>connexion" title="Connexion"><i class="fas fa-sign-in-alt"></i></a>
             </li><!-- @whitespace
         --><?php endif; ?><!-- @whitespace
         --><li>
                 <a href="FAQ" title="FAQ"><i class="fas fa-question-circle"></i></a>
-            </li><!-- @whitespace
-        --><?php if($member->getPermission() ==  "admin" ): ?><!-- @whitespace
-
-        --><li>
-                <a href="admini" title="admin"><i class="fas fa-user-cog"></i></a>
-            </li><!-- @whitespace
-
-            --><?php endif; ?><!-- @whitespace
-     --></ul>
+            </li>
+        </ul>
     </nav>
-
 </header>

@@ -93,6 +93,9 @@ class Score
         if(isset($data['idPlayer'])){
             $this->setIdPlayer($data['idPlayer']);
             }
+        else if(isset($data['idPlayer1'])) {
+            $this->setIdPlayer($data['idPlayer1']);
+        }
         else{
             $this->setIdPlayer(0);
             $this->_errors[] = 'idPlayer';

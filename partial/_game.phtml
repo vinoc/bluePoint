@@ -6,7 +6,7 @@
     <section id="reglages">
         <article>
             <div class="flex flex-column">
-                <label FOR="nbCase" class="marge-top">Sélectionnes le nombre de cases :</label>
+                <label FOR="nbCase" class="marge-top">Sélectionnes le nombre de points :</label>
                 <select <?php echo $disable; ?>  id="nbCase" name="nbCase">
                     <option value="3" <?php echo $nbpointsSelected3; ?>>3X3</option>
                     <option value="6" <?php echo $nbpointsSelected6; ?>>6X6</option>
@@ -22,7 +22,7 @@
                 <div class="button marge" id="start">Démarrer</div>
             </div>
 
-            <div id="scoresFinal" class="flex scores hidden">
+            <div id="scoresFinal" class="flex scores">
                 <div id="yourScore1" class="marge">
                     <p>Score</p>
                     <p><span>0</span></p>

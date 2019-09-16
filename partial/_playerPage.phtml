@@ -1,7 +1,14 @@
 <?php
 ?>
-
 <main id="playerPage">
+    <section id="compte" class="<?php echo $myPage; ?>">
+        <a href="compte?id=<?php echo $member->getID();?>" class="button">
+            <article>
+            <p>Modifier mes infos</p>
+            </article>
+        </a>
+    </section>
+
     <section id="duels">
         <h2>Les derniers duels de <?php echo $playerPage->getLogin();?> :</h2>
         <?php foreach ($duelListeAll as $duel): ?>
@@ -31,32 +38,60 @@
         <?php endforeach;?>
     </section>
 
-    <section id="scores">
-        <h2>Les derniers scores de <?php echo $playerPage->getLogin();?> :</h2>
-        <section id="myScores">
-            <h2>Mes scores</h2>
-            <?php
-            $i=0;
-            foreach ($myScores as $score): ?>
 
-                    <article class="<?php echo $score->getDifficultyClass(); ?>">
-                        <ul class="flex flex-evenly">
-                            <li><?php echo $score->getScore(); ?></li>
-                            <li><?php echo $score->getNbPoints();?>X<?php echo $score->getNbPoints();?></li>
-                            <li><?php echo str_replace(' ', '<br>', $score->getTimestamp());?></li>
+    <section id="myScores">
+        <h2>Les scores de <?php echo $playerPage->getLogin();?> :</h2>
+        <?php foreach ($myScores as $score):
+            if($score->getDifficulty() == 1): ?>
 
-                        </ul>
+                <article class="<?php echo $score->getDifficultyClass(); ?>">
+                    <ul class="flex flex-evenly">
+                        <li><?php echo $score->getScore(); ?></li>
+                        <li><?php echo $score->getNbPoints();?>X<?php echo $score->getNbPoints();?></li>
+                        <li><?php echo str_replace(' ', '<br>', $score->getTimestamp());?></li>
+
+                    </ul>
 
 
 
-                    </article>
-                <?php
-             $i++;
-            if($i ==10){
-                break;
-            }
+                </article>
+            <?php endif;
+        endforeach; ?>
 
-            endforeach; ?>
+        <?php foreach ($myScores as $score):
+
+            if($score->getDifficulty() == 2): ?>
+
+                <article class="<?php echo $score->getDifficultyClass(); ?>">
+                    <ul class="flex flex-evenly">
+                        <li><?php echo $score->getScore(); ?></li>
+                        <li><?php echo $score->getNbPoints();?>X<?php echo $score->getNbPoints();?></li>
+                        <li><?php echo str_replace(' ', '<br>', $score->getTimestamp());?></li>
+                    </ul>
+
+
+
+                </article>
+            <?php endif;
+        endforeach; ?>
+
+        <?php foreach ($myScores as $score):
+
+            if($score->getDifficulty() == 3): ?>
+
+                <article class="<?php echo $score->getDifficultyClass(); ?>">
+                    <ul class="flex flex-evenly">
+                        <li><?php echo $score->getScore(); ?></li>
+                        <li><?php echo $score->getNbPoints();?>X<?php echo $score->getNbPoints();?></li>
+                        <li><?php echo str_replace(' ', '<br>', $score->getTimestamp());?></li>
+                    </ul>
+
+
+
+                </article>
+            <?php endif;
+        endforeach; ?>
+
 
     </section>
 </main>

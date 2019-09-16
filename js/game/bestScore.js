@@ -16,8 +16,8 @@ function bestScore(){
 
         if (ajax.readyState === 4 && ajax.status === 200) {
             console.log(ajax.responseText);
-             bestScore1.innerHTML = ajax.responseText;
-             bestScore2.innerHTML = ajax.responseText;
+             bestScore1.textContent = ajax.responseText;
+             bestScore2.textContent = ajax.responseText;
         }
     }
 }

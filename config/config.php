@@ -32,7 +32,7 @@ $css_url = $host . 'css/';
 
 $js_url = $host . 'js/';
 
-$img_url = $host . '/img/';
+$img_url = $host . 'img/';
 
 $avatar_url = $img_url . 'avatar/';
 

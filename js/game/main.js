@@ -19,9 +19,8 @@ var selectDifficulty = document.querySelector('#niveau');
 var game = new Game;
 console.log(game);
 // CONFIG
-var WaitingTime = 1;
-var timeOfTheGame = 1.0;
-
+var WaitingTime = 3;
+var timeOfTheGame = 30.0;
 
 document.addEventListener('DOMContentLoaded',function(){
     btnStart = document.querySelector('#start');
@@ -35,8 +34,4 @@ document.addEventListener('DOMContentLoaded',function(){
     selectDifficulty.addEventListener('change', bestScore, false);
     //game Start
     btnStart.addEventListener('click',prepareGame,false);
-
-
-
-
 });

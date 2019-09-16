@@ -8,16 +8,16 @@ else {
     $myBestScore = ($myBestScore == false) ? 0 : $myBestScore[0];
 }
 
+//Hide duel line
 $showDuel = 'hidden';
-
 
 $memberManager = new MemberManager();
 
-if(isset($_GET['duel']) AND intval($_GET['duel']) >= 1){
+if(isset($_GET['id']) AND intval($_GET['id']) >= 1){
     if(!$member->isIdentify()){
         redirection('connexion');
     }
-    $versus = $memberManager->getMember(intval($_GET['duel']));
+    $versus = $memberManager->getMember(intval($_GET['id']));
 }
 else{
     $versus=false;
@@ -47,7 +47,6 @@ if ($versus != false) {
     $isDuel = 'true';
     $score='';
     $_SESSION['duel']['id']= $versus->getID();
-
 }
 elseif($duelBack != false){
     $showDuel = '';

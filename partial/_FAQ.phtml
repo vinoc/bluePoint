@@ -1,2 +1,128 @@
 <?php
 ?>
+<main id="faq">
+    <h1>Comment fonctionne <strong>Blue Point</strong></h1>
+    <section id="presentation">
+        <article>
+            <h2>Présentation du jeu</h2>
+            <div>
+                <p>Tu peux choisir le nombre de points désirés sur la grille de jeu ainsi que la difficulté. </p>
+            </div>
+            <picture>
+                <source media="(min-width: 768px)" srcset="<?php echo IMAGE_URL;?>FAQ/ordinateur/preparation_jeu.JPG"" />
+                <img src="<?php echo IMAGE_URL;?>FAQ/portable/preparation_jeu.png" alt="image" />
+            </picture>
+        </article>
+        <article>
+            <div>
+                <h3>Nombre de points</h3>
+                <p>Il y a trois choix :</p>
+                <ul>
+                    <li><p>-3X3</p>
+                        <picture>
+                            <source media="(min-width: 768px)" srcset="<?php echo IMAGE_URL;?>FAQ/ordinateur/3x3.JPG"" />
+                            <img src="<?php echo IMAGE_URL;?>FAQ/portable/3x3.png" alt="Le jeu en 3x3" />
+                        </picture>
+                    </li>
+
+                    <li><p>-6x6</p>
+                        <picture>
+                            <source media="(min-width: 768px)" srcset="<?php echo IMAGE_URL;?>FAQ/ordinateur/6x6.JPG"" />
+                            <img src="<?php echo IMAGE_URL;?>FAQ/portable/6x6.png" alt="Le jeu en 6x6" />
+                        </picture>
+                    </li>
+
+                    <li><p>-9x9</p>
+                        <picture>
+                            <source media="(min-width: 768px)" srcset="<?php echo IMAGE_URL;?>FAQ/ordinateur/9x9.JPG"" />
+                            <img src="<?php echo IMAGE_URL;?>FAQ/portable/9x9.png" alt="le jeu en 9x9" />
+                        </picture>
+                    </li>
+                </ul>
+            </div>
+        </article>
+        <article>
+            <div>
+                <h3>Difficulté</h3>
+                <p>Il y a trois difficulté. La différence est simple. La nuance des couleurs n'est pas la même !</p>
+
+                <ul>
+                    <li>
+                        <p>Niveau Facile: Au niveau facile, il n'y a qu'un seul point bleu !</p>
+                        <img src="<?php echo IMAGE_URL; ?>FAQ/ordinateur/facile.JPG" alt="image niveau Facile"/>
+                    </li>
+                    <li>
+                        <p>Niveau Moyen: Au niveau moyen, il y a quelques nuances de bleu !</p>
+                        <img src="<?php echo IMAGE_URL; ?>FAQ/ordinateur/moyen.JPG" alt="image niveau Moyen"/>
+                    </li>
+                    <li>
+                        <p>Niveau Difficile: Au niveau difficile, il y a beaucoup de nuances bleu !</p>
+                        <img src="<?php echo IMAGE_URL; ?>FAQ/ordinateur/difficile.JPG" alt="image niveau Difficile"/>
+                    </li>
+
+                </ul>
+            </div>
+        </article>
+    </section>
+
+    <section id="lesScores">
+        <h2>Gestion des Scores</h2>
+        <article>
+            <h3>Comptages des points</h3>
+
+            <p>Le comptage est simple: un clique sur le point bleu fait <b>gagner</b> 1 points. Un clique sur un point d'une autre couleur, aussi proche du bleu soit-il, fait <b>perdre</b> un point.</p>
+        </article>
+
+        <article>
+            <h3>Sauvegarde des points</h3>
+            <p>Un compte est necessaire pour enregistrer ton scores</p>
+            <p><b class="error">ATTENTION</b> En cas de duel, ton scores reste un score de duel, il faut être en solo pour apparaitre dans le tableau des meilleurs scores !</p>
+            <p>Ce qu'il se passe dans un duel, reste dans un duel !</p>
+        </article>
+    </section>
+
+    <section id="duel">
+        <h3>Les duels</h3>
+        <article class="flex flex-column">
+            <p>Tu peux provoquer un autre joueur pour voir qui est le meilleur d'entre vous. Comme sur une partie normal, tu peux choisir la difficulté et le nombre de points.</p>
+
+            <p>L'autre joueur recevras une notification quand il sera provoqué. Quand il aura répondu à ta provocation, tu recevras toi aussi un mail d'information.</p>
+
+            <p>Il est évidant que le joueur que tu provoques ne pourra pas modifier les regles que tu auras définit.</p>
+            
+            <img src="<?php echo IMAGE_URL; ?>FAQ/ordinateur/duel.JPG" alt="image du retour duel"/>
+
+            <img src="<?php echo IMAGE_URL;?>FAQ/portable/finDuel.png" alt="Image fin duel">
+
+            <p><b class="error">ATTENTION</b> En cas de duel, ton scores reste un score de duel, il faut être en solo pour apparaitre dans le tableau des meilleurs scores !</p>
+            <p>Ce qu'il se passe dans un duel, reste dans un duel !</p>
+
+
+        </article>
+    </section>
+
+    <section id="myScores">
+        <h3>Page des scores</h3>
+        <a href="<?php echo HOST;?>playerPage?id=<?php echo $member->getID();?>" class="button">Afficher la page</a>
+        <article>
+            <p>L'affichage est simple:</p>
+            <ul>
+                <li>- Le score</li>
+                <li>- Le type de jeu-Le nombre de cases</li>
+                <li>- La date</li>
+                <li>- La couleur définit la difficulté:
+                    <ul>
+                        <li class="facile">Vert : facile</li>
+                        <li class="moyen">Orange : moyen</li>
+                        <li class="difficile">Rouge : difficile</li>
+                    </ul>
+                </li>
+            </ul>
+            <picture>
+                <source media="(min-width: 768px)" srcset="<?php echo IMAGE_URL;?>FAQ/ordinateur/scores.JPG" />
+                <img src="<?php echo IMAGE_URL;?>FAQ/portable/scores.png" alt="exemple de scores" />
+            </picture>
+
+        </article>
+    </section>
+</main>

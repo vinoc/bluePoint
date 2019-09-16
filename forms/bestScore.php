@@ -1,5 +1,4 @@
 <?php
-echo 1;
 if($member->isIdentify()) {
     $difficulty = (isset($_POST['difficulty']) AND 0 < $_POST['difficulty'] AND $_POST['difficulty'] < 4) ? $_POST['difficulty'] : die();
 
@@ -7,7 +6,8 @@ if($member->isIdentify()) {
 
 
     $scoreManager = new ScoreManager();
+
     //echo int only, don't display the error message if an error occurs
-    echo intval($scoreManager->myBestScore($member->getID(), $difficulty, $nbPoints)[0]);
+    echo $scoreManager->myBestScore($member->getID(), $difficulty, $nbPoints)[0];
 }
 die();

@@ -7,4 +7,4 @@ $error = getErrors('update');
 
 $scoreManager= new ScoreManager();
 
-$myScores = $scoreManager->myScore($member->getID());
+$myScores = $scoreManager->myScores($member->getID());

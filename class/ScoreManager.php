@@ -96,7 +96,7 @@ ORDER BY score DESC LIMIT 1 ');
         return $req->fetch();
     }
 
-    public function myScore($id){
+    public function myScores($id){
         $req = $this->_bdd->prepare('SELECT * FROM `scores` WHERE idPlayer= :idPlayer ORDER BY timestamp DESC');
         $req->bindValue(':idPlayer', $id, PDO::PARAM_INT);
         $req->execute();

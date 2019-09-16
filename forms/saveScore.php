@@ -1,6 +1,5 @@
 <?php
 
-
 $data = $_POST;
 
 if($member->isIdentify()) {
@@ -30,6 +29,7 @@ Tu as été provoqué en duel par '.$member->getLogin().'. Feras-tu mieux ?<br>
         $mail['subject'] = 'Blue point : Duel !';
         $mail = new Mail($mail);
         $mail->sendMail();
+
 
         echo $idDuel;
     }

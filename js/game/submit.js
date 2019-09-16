@@ -17,9 +17,9 @@ function saveScore() {
                 if (ajax.readyState === 4 && ajax.status === 200) {
                         //enable for debug
                         // document.querySelector('#debug').innerHTML = ajax.responseText;
-                         if(ajax.responseText !== 'ok'){
-                                 document.location.href="duelEnd?id="+ajax.responseText;
-                         }
+                          if(ajax.responseText !== 'ok'){
+                                  document.location.href="duelEnd?id="+ajax.responseText;
+                          }
                 }
         }
 

@@ -32,7 +32,11 @@
 
 /*GLOBAL */
 /* Balises et class appelés à plusieurs endroits dans la page */
-*{box-sizing: border-box;}
+*{
+    box-sizing: border-box;
+    transition: 500ms;
+}
+
 html{  font-size: 62.5%;}
 body{
     font-size: 1.6em;
@@ -120,9 +124,6 @@ nav li{display: inline-block;}
 
 
 /*-------------------------- HEADER-------------------------- */
-
-
-
 header{
     display: flex;
     margin-top: -10px;
@@ -142,13 +143,15 @@ header a{
     text-decoration: none;
 }
 
-header div a{
+header>a div{
     padding: 5px;
 }
-
+nav{
+    width: 100%;
+}
 nav ul{
     display: flex;
-
+    justify-content: space-evenly;
 }
 
 nav a{
@@ -158,7 +161,6 @@ nav a{
 nav a:hover{
     background-color: RGBA(0,0,0,0.1);
 }
-
 
 .notification{
     background-color: red;
@@ -173,7 +175,7 @@ nav a:hover{
 .duel{
     position: inherit;
 }
-
+/*-------------------------- END HEADER-------------------------- */
 
 
 
@@ -183,8 +185,6 @@ nav a:hover{
 
 
 /* MAIN */
-/* Ce qui concerne le corps du site */
-
 /*------------------ HOME---------------*/
 
 #scores article{
@@ -368,17 +368,13 @@ nav a:hover{
     font-size: 0.8rem;
     color: blue;
 }
-/*#playerPage #duels{*/
-/*    display: block;*/
-/*    transition: 1s;*/
-/*}*/
+
 #playerPage .hidden{
     display: none;
-    transition: 500ms;
 }
 #playerPage .show{
     display: block;
-    transition: 500ms;
+
 }
 
 /*---------- END PLAYER PAGE ---------------------------*/
@@ -403,6 +399,48 @@ nav a:hover{
 
 
 /*--------------- END COMPTE  -----------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------- FAQ --------------------*/
+#faq{
+    text-align: center;
+}
+#faq img{
+    width: 25%;
+    border: 1px inset  #a3e4d7 ;
+}
+#faq img:hover{
+    transform: scale(2);
+
+}
+
+#faq section{
+    border: 1px solid #e8f8f5;
+    padding: 15px;
+    margin: 5px;
+}
+#faq section:hover{
+    border: 1px solid #a3e4d7;
+
+}
+
+
+
+
+/*---------------- END FAQ --------------*/
 
 
 

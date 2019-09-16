@@ -57,7 +57,9 @@ class Mail
         $headers[] = 'From: BluePoint <hello@cheezpa.com>';
 
 
-        mail($to, $subject, $message,  implode("\r\n", $headers));
+        if(STATE_DEV=='prod') {
+            mail($to, $subject, $message, implode("\r\n", $headers));
+        }
     }
 
 

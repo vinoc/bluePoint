@@ -13,7 +13,7 @@ $afficheBoutonConnexion = ($member->getIdentify()) ? $hidden : $visible;
 
 $visibiliteAdmin = ($member->getPermission() ==  "admin" ) ? $visible : $hidden;
 
-$urlMonCompte = ($member->getIdentify()) ?   HOST .'compte' : 'home';
+$urlMonCompte = ($member->getIdentify()) ?   HOST .'playerPage?id='.$member->getID() : 'home';
 
 $scoreManager = new ScoreManager();
 $notification = ($scoreManager->myWaitingDuel($member->getID()) === [])? 'hidden' : 'notification';
