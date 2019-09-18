@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amelvin
- * Date: 01/02/2019
- * Time: 14:46
- */
+
 
 $_SESSION=[];
 unset($_SESSION);

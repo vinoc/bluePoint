@@ -14,6 +14,7 @@
         <?php foreach ($duelListeAll as $duel): ?>
 
                 <article class="<?php echo $duel->getDifficultyClass(); ?>">
+                    <h6>Duel n°<?php echo $duel->getId();?></h6>
                     <ul class="flex flex-evenly">
                         <li>
                             <a href="playerPage?id=<?php echo $duel->getIdPlayer(); ?>" title="page du joueur"><?php echo $duel->getLogin()?> <i class="fas fa-external-link-alt"></i></a>

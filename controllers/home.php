@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amelvin
- * Date: 30/01/2019
- * Time: 13:48
- */
+
 
 $scoreManager= new ScoreManager();
 

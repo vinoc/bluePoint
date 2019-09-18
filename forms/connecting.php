@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amelvin
- * Date: 30/01/2019
- * Time: 15:49
- */
+
 
 $_SESSION['errors'] = [];
 if ($member->getIdentify()== true){

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amelvin
- * Date: 15/03/2018
- * Time: 14:26
- */
 
 
 //call function files (include automatic class call)
@@ -48,10 +42,10 @@ else{
     require (PARTIAL_PATH.'_404.phtml');
 }
 
-
-//if($openingPage != 'saveScore') {
+//footer is useless on game page
+if($openingPage != 'game') {
     require(PARTIAL_PATH . '_footer.phtml');
-//}
+}
 
 
 

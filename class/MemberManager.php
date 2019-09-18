@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amelvin
- * Date: 23/04/2018
- * Time: 15:50
- */
 
 class MemberManager extends BDD
 {

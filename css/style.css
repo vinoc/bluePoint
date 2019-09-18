@@ -37,12 +37,16 @@
     transition: 500ms;
 }
 
-html{  font-size: 62.5%;}
+html{
+    font-size: 62.5%;
+    height: 100%;
+}
 body{
     font-size: 1.6em;
     background-color:  #e8f8f5 ;
     text-align: center;
     width: 90%;
+    height: 100%;
     margin: auto;
 }
 ul{padding: 0;list-style: none}
@@ -116,6 +120,17 @@ nav li{display: inline-block;}
     text-align: center;
 }
 
+@media screen and (max-width: 728px){
+    form{
+        position: relative;
+    }
+    .outOfScreen{
+        position: absolute;
+        left: -1000px;
+        top:-100px;
+    }
+}
+.outOfScreen{}
 
 
 
@@ -145,6 +160,7 @@ header a{
 
 header>a div{
     padding: 5px;
+    margin-top: -10px;
 }
 nav{
     width: 100%;
@@ -184,7 +200,21 @@ nav a:hover{
 
 
 
-/* MAIN */
+/* -------------------------------- MAIN -----------------------*/
+main{
+    margin-bottom: 30px;
+    min-height: 100%;
+
+}
+/* -------------------------------- END MAIN -----------------------*/
+
+
+
+
+
+
+
+
 /*------------------ HOME---------------*/
 
 #scores article{
@@ -354,6 +384,8 @@ nav a:hover{
 
 
 
+
+
 /*---------- PLAYER PAGE ---------------------------*/
 
 #playerPage li a{
@@ -377,28 +409,15 @@ nav a:hover{
 
 }
 
+#playerPage h6{
+    margin-bottom: -15px;
+}
+
 /*---------- END PLAYER PAGE ---------------------------*/
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-/*---------------  COMPTE  -----------------------------*/
-
-
-
-
-
-/*--------------- END COMPTE  -----------------------------*/
 
 
 
@@ -424,11 +443,16 @@ nav a:hover{
 }
 #faq img:hover{
     transform: scale(2);
+}
 
+@media screen and (max-width: 728px){
+    #faq img:hover{
+        transform: scale(3);
+    }
 }
 
 #faq section{
-    border: 1px solid #e8f8f5;
+    border: 1px solid  #ebdef0 ;
     padding: 15px;
     margin: 5px;
 }
@@ -437,10 +461,14 @@ nav a:hover{
 
 }
 
-
-
-
 /*---------------- END FAQ --------------*/
+
+
+
+
+
+
+
 
 
 
@@ -449,8 +477,32 @@ nav a:hover{
 #error404 video{
     width: 80%;
 }
-/*------------- ERROR 404 --------------*/
+/*------------- END ERROR 404 --------------*/
+
+
+
+
+
+
+
+
+
 
 
 /* FOOTER */
 /* Ce qui concerne le footer */
+
+footer{
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #e8f8f5;
+}
+footer img{
+    max-width: 20px;
+}
+footer small:nth-child(2){
+    margin-top: 10px;
+}

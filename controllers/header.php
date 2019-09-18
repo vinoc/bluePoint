@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Amelvin
- * Date: 23/08/2018
- * Time: 21:38
- */
+
 
 $visible = 'visible';
 $hidden = 'hidden';

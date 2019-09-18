@@ -1,5 +1,4 @@
 'use strict'
-
 // global Var
 var btnStart;
 var score1;//After the game
@@ -17,12 +16,13 @@ var selectNbPoints = document.querySelector('#nbCase');
 var selectDifficulty = document.querySelector('#niveau');
 
 var game = new Game;
-console.log(game);
+
 // CONFIG
 var WaitingTime = 3;
 var timeOfTheGame = 30.0;
 
 document.addEventListener('DOMContentLoaded',function(){
+
     btnStart = document.querySelector('#start');
     score1 =document.querySelector('#yourScore1 span');
     score2 =document.querySelector('#yourScore2 span');

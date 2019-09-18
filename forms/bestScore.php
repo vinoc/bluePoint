@@ -8,6 +8,7 @@ if($member->isIdentify()) {
     $scoreManager = new ScoreManager();
 
     //echo int only, don't display the error message if an error occurs
-    echo $scoreManager->myBestScore($member->getID(), $difficulty, $nbPoints)[0];
+    $bestScore = (is_int($scoreManager->myBestScore($member->getID(), $difficulty, $nbPoints)[0]))? :'0';
+    echo $bestScore;
 }
 die();

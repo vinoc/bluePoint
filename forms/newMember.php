@@ -44,7 +44,7 @@ if($memberManager->noDoubleMember($login, $mail) == false){
     $memberManager->newMember($newMember);
 
     $memberManager->connectionLogin($login, $password);
-    redirection('compte');
+    redirection('home');
 }
 else{
     redirection('inscription');
