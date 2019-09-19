@@ -1,10 +1,7 @@
 'use strict'
-
-
+//Change scores when user change difficulty or number of points
 function bestScore(){
     var ajax = new XMLHttpRequest();
-
-
     ajax.open("POST", "bestScore", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -13,7 +10,6 @@ function bestScore(){
 
 // Answer PHP
     ajax.onreadystatechange = function () {
-
         if (ajax.readyState === 4 && ajax.status === 200) {
             console.log(ajax.responseText);
              bestScore1.textContent = ajax.responseText;

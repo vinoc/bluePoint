@@ -13,28 +13,51 @@ function prepareGame(){
     }
 }
 
+
+//show point
+function createView(){
+    //First launch
+    if(typeof points === 'undefined'){
+        prepareTable();
+    }
+    var html='';
+
+    points.forEach(function(line){
+        html+= '<div class=\'flex\'>';
+        line.forEach(function(point){
+            html += '<div class="point '+game.nbPointsClass+'" style="background-color:'+point.getColor()+'"></div>';
+        });
+        html+= '</div>';
+    });
+
+    pointView.innerHTML=html;
+    pointsListener();
+    prepareTable();
+}
+
+
 function prepareTable() {
-    var points=[];
     var i;
     var y;
+    points = [];
     for (i = 0; i < game.getNbPoint() ; i++) {
         points[i]=[];
         for (y = 0; y < game.getNbPoint() ; y++) {
             points[i][y] = new Point;
         }
     }
-    bluePoint(points);
+    bluePoint();
 }
 
-//selectionne un point au hasard et le change en bleu
-function bluePoint(points){
+
+//One point need to be blue ;)
+function bluePoint(){
     var x= random(0, points.length);
     var y= random(0, points.length);
    var point=points[x][y];
     point.setColor("RGB(0,0,255)");
-    createView(points);
-}
 
+}
 
 
 function randomColor(){
@@ -64,38 +87,12 @@ function random(min, max){
 }
 
 
-//affiche les points
-function createView(points){
-    var html='';
-
-
-
-    points.forEach(function(line){
-        html+= '<div class=\'flex\'>';
-        line.forEach(function(point){
-            html += '<div class="point '+game.nbPointsClass+'" style="background-color:'+point.getColor()+'"></div>';
-        });
-        html+= '</div>';
-    });
-
-    pointView.innerHTML=html;
-    pointsListener();
-}
-
-//ajoute les listener aux points nouvellement créé
+//Add listener to new points
 function pointsListener(){
     var points = document.querySelectorAll('.point');
 
     points.forEach(function (point){
         point.addEventListener('click', clickOnPoint);
-    });
-}
-
-function pointListenerStop(){
-    var points = document.querySelectorAll('.point');
-
-    points.forEach(function (point){
-        point.removeEventListener('click', clickOnPoint);
     });
 }
 
@@ -107,16 +104,15 @@ function clickOnPoint(){
     else{
         scoreLess();
     }
-    prepareTable();
+    createView();
 }
 
 
 function scoreMore(){
     game.setScore(game.getScore()+1);
-
     showScore();
-
 }
+
 
 function scoreLess(){
     if(game.getScore() >0) {
@@ -127,6 +123,7 @@ function scoreLess(){
     showScore();
 }
 
+
 function showScore(){
     score1.textContent= game.getScore();
     score2.textContent= game.getScore();
@@ -135,15 +132,20 @@ function showScore(){
         bestScore1.textContent = game.getScore();
         bestScore2.textContent = game.getScore();
     }
-    prepareTable();
 }
-
-
 
 
 function classToggle(variable, toggleClass){
     variable.classList.toggle(toggleClass);
+}
 
+
+function pointListenerStop(){
+    var points = document.querySelectorAll('.point');
+
+    points.forEach(function (point){
+        point.removeEventListener('click', clickOnPoint);
+    });
 }
 
 
@@ -153,4 +155,4 @@ function endGame(){
     scoresFinal.classList.remove('hidden');
     saveScore();
     pauseBeforeNewGame();
-    }
+}

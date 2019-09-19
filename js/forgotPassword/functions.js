@@ -5,11 +5,9 @@ function verify(e){
 
     login = document.querySelector('#login').value;
     mailAdress = document.querySelector('#mailAdress').value;
-
     if(login !=='' || mailAdress !==''){
         send();
     }
-
 
 }
 

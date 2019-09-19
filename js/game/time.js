@@ -1,51 +1,64 @@
 'use strict'
-
 function startIsComming(){
     var div = document.querySelector('#startIn');
     var count = document.querySelector('#startIn p');
 
+    classToggle(div, 'hidden');
+
     count.innerHTML = WaitingTime;
 
-    classToggle(div, 'hidden');
-    var wait;
-    wait=setInterval(function(){
+    var wait=setInterval(function(){
         if(count.innerHTML<2){
             clearInterval(wait);
             classToggle(div, 'hidden');
-            count.innerHTML = WaitingTime;
             gameTime();
         }
         else {
             count.innerHTML--;
         }
     }, 1000);
-
 }
 
 
-
 function gameTime(){
+    var timeLeft = document.querySelector('#time span');
 
+    //Worker for not having freeze during the game
     if(window.Worker){
-        var timerWorker = new Worker('js/game/workerTimer.js');
-        timerWorker.postMessage('start');
+        var timerWorker = new Worker('js/game/workerTime.js');
+        timerWorker.postMessage(timeOfTheGame);
 
+        //Start Game only once.
+        game.setStarted(true);
+        classToggle(theGame, 'hidden');
+        timeLeft.innerHTML = timeOfTheGame;
+        createView()
+
+        timerWorker.onmessage = function(event){
+            if(event.data === 'end') {
+                pointListenerStop();
+                timeLeft.innerHTML = 0;
+                endGame();
+                timerWorker.terminate(); // for release memory
+             }
+            else{
+                timeLeft.innerHTML = event.data;
+            }
+        }
     }
-    // Timer for old systeme
+    // Timer for old systeme who don't support workers
     else {
-
-        var timeLeft = document.querySelector('#time span');
         if (game.getStarted() === false) {
             classToggle(theGame, 'hidden');
-            //On démarre le jeu afin de ne pas relancer le compte à rebour
-
+            //Game start only once
             game.setStarted(true);
-            prepareTable();
+
+            createView();
             pointsListener();
             timeLeft.innerHTML = timeOfTheGame;
 
             var gameTime = setInterval(function () {
-                //tofixed: Pour n'afficher qu'1 après la virgule (29.2)
+                //tofixed: to display only one decimal
                 timeLeft.innerHTML = (timeLeft.innerHTML - 0.1).toFixed(1);
                 if (timeLeft.innerHTML <= 0) {
                     clearInterval(gameTime);
@@ -60,7 +73,8 @@ function gameTime(){
 
 }
 
-// 3 seconds before start a new game. Prevent click on "demarrer" when game disappear
+
+// 3 seconds before start a new game. Prevent click on "démarrer" when game disappear
 function pauseBeforeNewGame(){
     var i=0;
     var pause=setInterval(function(){

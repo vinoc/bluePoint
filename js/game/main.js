@@ -10,6 +10,7 @@ var bestScore2;//During the game
 var gameArea = document.querySelector('#gameArea');
 var theGame = document.querySelector('#theGame');
 
+var points;
 var pointView = document.querySelector('#pointView');
 
 var selectNbPoints = document.querySelector('#nbCase');
@@ -17,12 +18,13 @@ var selectDifficulty = document.querySelector('#niveau');
 
 var game = new Game;
 
+
 // CONFIG
 var WaitingTime = 3;
 var timeOfTheGame = 30.0;
 
-document.addEventListener('DOMContentLoaded',function(){
 
+document.addEventListener('DOMContentLoaded',function(){
     btnStart = document.querySelector('#start');
     score1 =document.querySelector('#yourScore1 span');
     score2 =document.querySelector('#yourScore2 span');
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded',function(){
     //Change Best Scores
     selectNbPoints.addEventListener('change', bestScore, false);
     selectDifficulty.addEventListener('change', bestScore, false);
+
     //game Start
     btnStart.addEventListener('click',prepareGame,false);
 });

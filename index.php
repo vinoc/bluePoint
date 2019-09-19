@@ -32,15 +32,20 @@ if (file_exists(CONTROLLER_PATH.''.$openingPage.'.php')){
 }
 elseif (file_exists(PARTIAL_PATH.'_'.$openingPage.'.php') )
 {
-    echo 'partial';
     require(PARTIAL_PATH.'_'.$openingPage.'.phtml');
 }
 elseif (file_exists(FORM_PATH.''.$openingPage.'.php')){
     require (FORM_PATH.''.$openingPage.'.php');
 }
+//elseif ($openingPage == 'js/game/workerTimer.js'){
+//    require(JS_URL.'js/game/workerTimer.js');
+//}
 else{
+    require (CONTROLLER_PATH.'header.php');
     require (PARTIAL_PATH.'_404.phtml');
 }
+
+
 
 //footer is useless on game page
 if($openingPage != 'game') {

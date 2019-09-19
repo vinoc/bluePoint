@@ -9,8 +9,6 @@ var  Game = function(){
 };
 
 // setter
-
-
 Game.prototype.setStarted = function(bool){
     this.started = bool;
 };
@@ -49,31 +47,24 @@ Game.prototype.setScore = function(int){
 
 
 // Getter
-
-
 Game.prototype.getStarted = function(){
     return this.started;
 }
-
 Game.prototype.getDifficulty = function(){
     return this.difficulty;
 }
-
 Game.prototype.getNbPoint = function(){
     return this.nbPoints;
 }
-
 Game.prototype.getScore = function(){
     return this.score;
 }
 
 
 // Fonctions
-
 Game.prototype.resetGame = function(){
     this.started = false;
     this.difficulty = 1;//1-2-3
     this.nbPoints = 3;//3-6-9
     this.score = 0;
-
 }
