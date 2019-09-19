@@ -1,6 +1,5 @@
 <?php
 
-
 //call function files (include automatic class call)
 require_once ('config/config.php');
 require_once (FUNCTIONS_PATH.'functions.php');
@@ -18,10 +17,6 @@ $member = connecting();
 $openingPage = (isset($_GET['url']) AND !empty($_GET['url']) ) ? trim($_GET['url']) : 'home' ;
 $title = $openingPage;
 
-//calling header, but not display yet
-//ob_start();
-//require (CONTROLLER_PATH.'header.php');
-//$header = ob_get_clean();
 
 if (file_exists(CONTROLLER_PATH.''.$openingPage.'.php')){
     require(CONTROLLER_PATH.''.$openingPage.'.php');
@@ -37,14 +32,10 @@ elseif (file_exists(PARTIAL_PATH.'_'.$openingPage.'.php') )
 elseif (file_exists(FORM_PATH.''.$openingPage.'.php')){
     require (FORM_PATH.''.$openingPage.'.php');
 }
-//elseif ($openingPage == 'js/game/workerTimer.js'){
-//    require(JS_URL.'js/game/workerTimer.js');
-//}
 else{
     require (CONTROLLER_PATH.'header.php');
     require (PARTIAL_PATH.'_404.phtml');
 }
-
 
 
 //footer is useless on game page

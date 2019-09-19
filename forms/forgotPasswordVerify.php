@@ -22,7 +22,7 @@ if( $distractedUser->getID() !=null ){
 
 
     $mail= [];
-    $mail['message'] = "Bonjour, <br>Vous avez oublié votre mot de passe, pas de panic, cela arrive. <br>Merci de cliquer sur ce lien ou de le copier dans votre navigateur pour créer un nouveau mot de passe<br>".$link;
+    $mail['message'] = "Bonjour, <br>Vous avez oublié votre mot de passe, pas de panique, cela arrive. <br>Merci de cliquer sur ce lien ou de le copier dans votre navigateur pour créer un nouveau mot de passe<br>".$link;
 
     $mail['recipient'] = $distractedUser->getMailAdress();
     $mail['subject'] = 'Blue point : Mot de passe';

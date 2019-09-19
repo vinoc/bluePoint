@@ -1,6 +1,5 @@
 <?php
 
-
 $visible = 'visible';
 $hidden = 'hidden';
 $afficheBoutonDeconnexion = ($member->getIdentify()) ? $visible : $hidden;
@@ -13,6 +12,6 @@ $urlMonCompte = ($member->getIdentify()) ?   HOST .'playerPage?id='.$member->get
 $scoreManager = new ScoreManager();
 $notification = ($scoreManager->myWaitingDuel($member->getID()) === [])? 'hidden' : 'notification';
 
-$titrePage='Le combat, c\'est la vie !';
+$titrePage='Blue Point, c\'est la vie !';
 
 require (PARTIAL_PATH.'_header.phtml');

@@ -3,15 +3,12 @@
 $data = $_POST;
 
 if($member->isIdentify()) {
-
     $scoreManager = new ScoreManager();
     $score = new score($data);
 
-
     $score->setIdPlayer($member->getID());
 
-
-    //echo id of duel, or 'ok' for normal game
+    //echo id of duel for redirection, or 'ok' for normal game
     if (isset($_SESSION['duel']['id']) AND $_SESSION['duel']['id'] != ''){
         $score->setDuel(true);
         $score->setIdPlayer2($_SESSION['duel']['id']);
@@ -29,7 +26,6 @@ Tu as été provoqué en duel par '.$member->getLogin().'. Feras-tu mieux ?<br>
         $mail['subject'] = 'Blue point : Duel !';
         $mail = new Mail($mail);
         $mail->sendMail();
-
 
         echo $idDuel;
     }
@@ -49,19 +45,18 @@ Un duel est terminé.<br>
         $mail = new Mail($mail);
         $mail->sendMail();
 
-
         echo $scoreManager->updateDuel($score);
     }
     else{
         $scoreManager->saveScore($score);
         echo 'ok';
     }
-
 }
 else{
     echo 'ok';
 }
 
+//do not show footer
 die();
 
 

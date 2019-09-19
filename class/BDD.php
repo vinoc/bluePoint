@@ -1,6 +1,5 @@
 <?php
 
-
 class BDD
 {
     protected $_bdd;

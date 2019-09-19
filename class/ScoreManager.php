@@ -13,6 +13,7 @@ class ScoreManager extends BDD
 
         $tab = $req->fetchAll();
         $scores=[];
+
         foreach ($tab as $element){
             $scores[] = new Score($element);
         }
@@ -28,12 +29,11 @@ class ScoreManager extends BDD
 
         $tab = $req->fetchAll();
         $scores=[];
+
         foreach ($tab as $element){
             $scores[] = new Score($element);
         }
         return $scores;
-
-
     }
 
     public function bestScoresOfMonth(int $difficulty, int $nbPoints):array
@@ -45,12 +45,11 @@ class ScoreManager extends BDD
 
         $tab = $req->fetchAll();
         $scores=[];
+
         foreach ($tab as $element){
             $scores[] = new Score($element);
         }
         return $scores;
-
-
     }
 
     public function saveScore($score){
@@ -61,12 +60,10 @@ class ScoreManager extends BDD
         $req->bindValue(':nbPoints', $score->getNbPoints(), PDO::PARAM_INT);
 
         return $req->execute();
-
     }
 
     public function saveDuel($score):int
     {
-
         $req = $this->_bdd->prepare('INSERT INTO `duels`( `idPlayer1`, `idPlayer2`, `scorePlayer1`, `difficulty`, `nbPoints`) VALUES (:idPlayer1,:idPlayer2, :scorePlayer1, :difficulty, :nbPoints)');
         $req->bindValue(':idPlayer1', $score->getIdPlayer(), PDO::PARAM_INT);
         $req->bindValue(':idPlayer2', $score->getIdPlayer2(), PDO::PARAM_INT);
@@ -77,7 +74,6 @@ class ScoreManager extends BDD
         $req->execute();
 
         return $this->_bdd->lastInsertId();
-
     }
 
     public function myBestScore(int $id, int $difficulty = 1 , int $nbPoints = 3){
@@ -114,7 +110,6 @@ ORDER BY score DESC LIMIT 1 ');
          for ($difficulty = 1; $difficulty < 4; $difficulty++) {
 
             for($nbPoints = 3; $nbPoints<10; $nbPoints+=3) {
-
                 $req = $this->_bdd->prepare('SELECT * FROM `scores`  WHERE `idPlayer` = :id AND `difficulty` = :difficulty AND nbPoints = :nbPoints  ORDER BY `score` DESC LIMIT 1 ');
 
                 $req->bindValue(':id', $id, PDO::PARAM_INT);
@@ -123,13 +118,11 @@ ORDER BY score DESC LIMIT 1 ');
 
                  $req->execute();
                  $tab = $req->fetchAll();
+
                  foreach ($tab as $element) {
                      $scores[] = new Score($element);
-
                 }
-
             }
-
         }
          return $scores;
      }
@@ -143,6 +136,7 @@ WHERE `idPlayer2`= :idPlayer2 AND ISNULL(`scorePlayer2`) = 1 ');
         $req->execute();
 
         $scores=[];
+
         foreach ($req->fetchAll() as $value){
             $value['duel']= true;
             $scores[] = new Score($value);
@@ -163,10 +157,10 @@ ORDER BY `dateDuel` DESC LIMIT 10');
         $req->execute();
         $data = $req->fetchAll();
         $scores=[];
+
         foreach ($data as $score){
             $scores[] = new Score($score);
         }
-
         return $scores;
      }
 
@@ -188,7 +182,6 @@ WHERE duels.id = :idDuel AND ISNULL(`scorePlayer2`) = 1');
         else {
             return new Score($score);
         }
-
      }
 
     public function onetDuel(int $idDuel) {
@@ -209,7 +202,6 @@ WHERE duels.id = :idDuel');
         else {
             return new Score($score);
         }
-
     }
 
      public function updateDuel(object $score){
@@ -222,11 +214,5 @@ WHERE duels.id = :idDuel');
         $req->execute();
 
         return $score->getId();
-
-
      }
-
-
-
-
 }

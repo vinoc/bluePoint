@@ -5,6 +5,9 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
 
+#--------- JURY 3WA: --------------
+#Cette partie est désactivé car non fonctionnelle si les modules concerné ne sont pas activé. Ces modules sont bien activé à l'adresse "https://cheezpa/cheezpa/bluePoint".
+
 
 ## MOD_DEFLATE COMPRESSION
 #SetOutputFilter DEFLATE

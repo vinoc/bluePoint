@@ -1,6 +1,6 @@
 <?php
 if(!$member->isIdentify()){
-    redirection('home');
+    redirect('home');
 }
 
 $error = getErrors('update');

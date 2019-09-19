@@ -1,11 +1,11 @@
 <?php
+
 if($_SESSION['duel'] ===[]){
-    //redirection('duel');
+    redirect('duel');
 }
 
 if(!isset($_GET['id']) OR intval($_GET['id']) <=0) {
-    //redirection('duel');
-    echo 'redirection';
+    redirect('duel');
 }
 else{
     $scoreManager = new ScoreManager();

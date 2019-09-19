@@ -1,6 +1,6 @@
 <?php
 if(!$member->isIdentify()){
-   redirection('connexion');
+   redirect('connexion');
 }
 else {
     $memberManager = new MemberManager();
@@ -8,6 +8,7 @@ else {
 
     $scoreManager = new ScoreManager();
     $scores = [];
+
     foreach ($members as $user){
         $scores[$user->getId()] = $scoreManager->allMyBestsScores($user->getId());
     }

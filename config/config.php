@@ -66,13 +66,13 @@ define("STATE_DEV", $stateDev);
 
 
 // BDD
-
 if ($_SERVER['HTTP_HOST'] == '127.0.0.1' OR $_SERVER['HTTP_HOST'] == 'localhost') {
     $bddDomaine = 'localhost';
     $bddNom = 'bluePoint';
     $bddLogin = 'root';
     $bddMDP = '';
-} else {
+}
+else {
     include_once '../../bdd/bdd.php';
 }
 

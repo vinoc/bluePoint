@@ -8,6 +8,5 @@ window.addEventListener('DOMContentLoaded', function(){
 
    if(body.scrollHeight > window.innerHeight) {
         main.style.paddingBottom = parseInt(footer.offsetHeight) + 'px';
-       console.log('main'+main.style.paddingBottom);
    }
 });

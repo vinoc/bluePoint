@@ -1,4 +1,5 @@
 <?php
+
 if($member->isIdentify()){
-    redirection('home');
+    redirect('home');
 }

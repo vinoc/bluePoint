@@ -19,11 +19,9 @@ class Member
     const EST_MODERATEUR = 'moderator';
     const EST_VISITEUR = 'visitor';
 
-
     public function __construct(array $donnees) {
         $this->errors = [];
         if (!empty($donnees)) {
-
             if (isset($donnees['id'])) {
                 $this->setID($donnees['id']);
             }
@@ -33,20 +31,6 @@ class Member
             }
             else{
                 $this->errors[] = 'login';
-            }
-
-            if (isset($donnees['name'])){
-                $this->setName($donnees['namea']);
-            }
-            else{
-                $this->errors[] = 'name';
-            }
-
-            if (isset($donnees['lastName'])){
-                $this->setLastName($donnees['lastName']);
-            }
-            else{
-                $this->errors[] = 'lastName';
             }
 
             if (isset($donnees['mailAdress'])){
@@ -82,23 +66,19 @@ class Member
             $this->setPermission('visitor');
 
         }
-
 }
 
+
+    //SETTER
     public function setID(int $id){
         $this->id = intval($id);
-
     }
+
     public function setLogin(string $login)
     {
         $this->login= htmlspecialchars($login);
     }
-    public function setName(string $name){
-        $this->name = htmlspecialchars($name);
-    }
-    public function setLastName(string $lastName){
-        $this->lastName = htmlspecialchars($lastName);
-    }
+
     public function setMailAdress(string $mailAdress){
 
         if (filter_var($mailAdress, FILTER_VALIDATE_EMAIL)){
@@ -109,40 +89,34 @@ class Member
             $this->errors[] = 'mailAdress';
             }
     }
+
     public function setPassword(string $password){
         $this->password= htmlspecialchars($password);
     }
+
     public function setPasswordTemp(string $passwordTemp){
         $this->passwordTemp = $passwordTemp;
     }
+
     public function setPermission(string $permission){
         $permission = ($permission =='admin' OR $permission == 'Member' OR $permission == 'moderator') ? $permission : 'visitor' ;
         $this->permission = $permission;
     }
+
     public function setIdentify(bool $value){
         $this->identify = $value;
     }
 
 
-
-
+    //GETTER
     public function getID():int
     {
-
         return ($this->id ==null)? '0': $this->id;
     }
     public function getLogin():string
     {
         $login = ($this->login === null)? 'Inconnu': $this->login;
         return$login;
-    }
-    public function getName():string
-    {
-        return $this->name;
-    }
-    public function getLastName():string
-    {
-        return $this->lastName;
     }
     public function getMailAdress():string
     {
@@ -168,11 +142,7 @@ class Member
     {
         return $this->identify;
     }
-
-
     Public function isIdentify():bool {
         return $this->identify;
     }
-
-
 }

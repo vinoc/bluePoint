@@ -1,6 +1,5 @@
 <?php
 
-
 class Mail
 {
     private $_addressRecipient;
@@ -42,10 +41,7 @@ class Mail
         $this->_subject = $subject;
     }
 
-
     public function sendMail(){
-
-
         $to =$this->_addressRecipient;
         $subject = $this->_subject;
         $message = $this->_message;
@@ -56,12 +52,8 @@ class Mail
         $headers[] = 'To: <'.$this->_addressRecipient.'>';
         $headers[] = 'From: BluePoint <hello@cheezpa.com>';
 
-
         if(STATE_DEV=='prod') {
             mail($to, $subject, $message, implode("\r\n", $headers));
         }
     }
-
-
-
 }

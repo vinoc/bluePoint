@@ -16,7 +16,7 @@ function getErrors(string $nomDuChamp):string
     return $error;
 }
 
-function connecting()
+function connecting():object
 {
     if (isset($_SESSION['member'])) {
         return new Member($_SESSION['member']);
@@ -31,22 +31,23 @@ function connecting()
     else{
         return new Member([]);
     }
-
 }
 
-function chargerClasse($classe)
+
+function chargeClasse($classe)
 {
-    require 'class/' .ucfirst ($classe) .'.php'; // On inclut la classe correspondante au paramètre passé. Le fichier doit porter le nom de la class qu'il contient !
+    require 'class/' .ucfirst ($classe) .'.php';
 }
 
-spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload pour qu'elle soit appelée dès qu'on instanciera une classe non déclarée.
+spl_autoload_register('chargeClasse');
 
 
-function redirection($destination)
+function redirect($location)
 {
-    header("location: ".HOST."$destination");
+    header("location: ".HOST."$location");
     die();
 }
+
 
 function debug($variable, $die = 0)
 {
@@ -59,6 +60,7 @@ function debug($variable, $die = 0)
         echo "<br />";
 }
 
+
 function devOrProd(): bool
 {
     if(STATE_DEV == "dev"){
@@ -69,6 +71,7 @@ function devOrProd(): bool
     }
 }
 
+
 function scoreRandom():array
 {
     $tab['niveau'] = random_int(1,3);
@@ -76,11 +79,13 @@ function scoreRandom():array
     return $tab;
 }
 
+
 function memberOnly(object $member, string $redirection){
     if($member->getPermission() == 'visitor'){
-        redirection($redirection);
+        redirect($redirection);
     }
 }
+
 
 function errorPHP($err_severity, $err_msg, $err_file, $err_line, array $err_context){
     if(devOrProd()) {

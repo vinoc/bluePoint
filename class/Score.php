@@ -7,7 +7,7 @@ class Score
     private $_score;
     private $_idPlayer;
     private $_login;
-    private $_duree;//Durée de la partie
+    private $_duree;//Time of the game (Not available yet)
     private $_nbPoints;
     private $_difficulty;
     private $_timestamp;
@@ -72,7 +72,7 @@ class Score
 
         if(isset($data['id'])){
             $this->setId($data['id']);
-            }
+        }
         else{
             $this->setId(0);
             $this->_errors[] = 'id';
@@ -80,19 +80,19 @@ class Score
 
         if(isset($data['score'])){
             $this->setScore($data['score']);
-            }
+        }
         else{
             $this->setScore(0);
             $this->_errors[] = 'score';
         }
+
         if(isset($data['scorePlayer1'])){
             $this->setScore($data['scorePlayer1']);
         }
 
-
         if(isset($data['idPlayer'])){
             $this->setIdPlayer($data['idPlayer']);
-            }
+        }
         else if(isset($data['idPlayer1'])) {
             $this->setIdPlayer($data['idPlayer1']);
         }
@@ -189,7 +189,6 @@ class Score
     }
 
     public function setNbPoints(int $nbpoints){
-
         if($nbpoints ==3 OR $nbpoints == 6 OR $nbpoints ==9){
             $this->_nbPoints = $nbpoints;
         }
@@ -204,9 +203,9 @@ class Score
         $this->_idPlayer2 = $idPlayer2;
     }
 
-       public function setLogin2(string $login2){
-           $this->_login2 = $login2;
-       }
+   public function setLogin2(string $login2){
+       $this->_login2 = $login2;
+   }
 
     public function setScore2($score2)
     {
@@ -223,37 +222,31 @@ class Score
         $this->_dateBack = $dateBack;
     }
 
-//GETTEUR
 
+//GETTEUR
     public function getId():int
     {
         return $this->_id;
     }
-
     public function getScore():int
     {
         return htmlspecialchars($this->_score);
     }
-
     public function getIdPlayer():int
     {
         return $this->_idPlayer;
     }
-
     public function getDuree():int
     {
         return htmlspecialchars($this->_duree);
     }
-
     public function getNbPoints():int{
         return $this->_nbPoints;
     }
-
     public function getDifficulty():int
     {
         return htmlspecialchars($this->_difficulty);
     }
-
     public function getDifficultyClass():string
     {
         switch ($this->_difficulty) {
@@ -269,58 +262,40 @@ class Score
             default:
                 return 'error';
         }
-
     }
-
     public function getTimestamp():string {
         return $this->_timestamp;
     }
-
     public function isDuel(): bool
     {
         return $this->_duel;
     }
-
     public function getIdPlayer2():int
     {
         return $this->_idPlayer2;
     }
-
     public function getScore2()
     {
         return htmlspecialchars($this->_score2);
     }
-
     public function getDateProvocation():string
     {
         return $this->_dateProvocation;
     }
-
     public function getDateBack()
     {
         return $this->_dateBack;
     }
-
     public function getErrors():int
     {
         return $this->_errors;
     }
-
     public function getLogin()
     {
         return htmlspecialchars($this->_login);
     }
-
     public function getLogin2()
     {
         return htmlspecialchars($this->_login2);
     }
-
-
-
-
-
-
-
-
 }

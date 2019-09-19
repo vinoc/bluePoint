@@ -3,11 +3,9 @@
 class MemberManager extends BDD
 {
 
-
     public function connectionLogin(string $login, string $password)
     {
         if ($login !== '0' OR $password !== '0') {
-
             $req = $this->_bdd;
             $resultat = $req->prepare('SELECT * FROM members WHERE login = ?');
             $resultat->execute([$login]);
@@ -24,10 +22,8 @@ class MemberManager extends BDD
                 return false;
             }
 
-
             $member->setPasswordTemp(uniqid('', true));
             $this->memberUpdatePasswordTemp($member);
-
 
             setcookie('1234', $member->getID(), time() + 30 * 24 * 3600, '/', $_SERVER['HTTP_HOST'], false, true);
             setcookie('1235', $member->getPasswordTemp(), time() + 30 * 24 * 3600, '/', $_SERVER['HTTP_HOST'], false, true);
@@ -35,19 +31,13 @@ class MemberManager extends BDD
             $_SESSION['member'] = $data;
 
             return $member;
-
-
         } else {
-
             return false;
         }
-
-
     }
 
     public function connexionCookie(int $id, string $passwordTemp): object
     {
-
         if ($id !== '0' OR $passwordTemp !== '0') {
 
             $req = $this->_bdd;
@@ -58,38 +48,34 @@ class MemberManager extends BDD
                 return new Member([]);
             }
 
-
-            $member = new Member($data);
             $_SESSION['member'] = $data;
 
             return new Member($data);
-        } else {
+        }
+        else {
             return new Member([]);
         }
-
     }
 
     public function newMember(object $member): bool
     {
         if ($member->getIdentify() !== false) {
             return false;
-        } else {
+        }
+        else {
             $password = password_hash($member->getPassword(), PASSWORD_DEFAULT);
             $saveNewMember = $this->_bdd->prepare('INSERT INTO members (login, mailAdress, password, permission, first_Date) VALUE (?, ?, ?, ?, ?)');
             return $saveNewMember->execute([$member->getLogin(), $member->getMailAdress(), $password, $member->getPermission(), date("d-m-y H:i:s")]);
-
         }
-
     }
 
     public function MemberUpdate(object $member, object $memberUpdate): bool
     {
-//$2y$10$DQtzdGSLbq5vpYPzauVMduD2dQabbtJGBbqjTnZAuLyJCyBknzQ5K
-
         if ($memberUpdate->getPassword() != null) {
             $req = $this->_bdd->prepare(' UPDATE `members` SET `login`=:login, `mailAdress`=:mailAdress,`password`=:password WHERE `id`=:id');
             $req->bindValue(':password', password_hash($memberUpdate->getPassword(), PASSWORD_DEFAULT), PDO::PARAM_STR);
-        } else {
+        }
+        else {
             $req = $this->_bdd->prepare(' UPDATE `members` SET `login`=:login,`mailAdress`=:mailAdress WHERE `id`=:id');
         }
 
@@ -99,8 +85,6 @@ class MemberManager extends BDD
         $req->bindValue(':id', $member->getID(), PDO::PARAM_INT);
 
         return $req->execute();
-
-
     }
 
     public function memberUpdatePasswordTemp(object $member): bool
@@ -120,15 +104,14 @@ class MemberManager extends BDD
             $members[] = new Member($elements);
         }
         return $members;
-
     }
 
     public function getMember($id)
     {
         if ($id == 0) {
             return new Member([]);
-        } else {
-
+        }
+        else {
             $req = $this->_bdd->prepare('SELECT `id`,`login`,`mailAdress`, `permission`,`first_date` FROM `members` WHERE id= :id');
 
             $req->bindValue(':id', $id, PDO::PARAM_INT);
@@ -172,17 +155,13 @@ class MemberManager extends BDD
         return new Member($req->fetch());
     }
 
-
     public function distractedMember(object $distractedUser, string $distractCode){
-
         $req = $this->_bdd->prepare('UPDATE `members` SET `distractedUser`=:disctractCode WHERE `id`= :id');
         $req->bindValue(':disctractCode', $distractCode, PDO::PARAM_STR);
         $req->bindValue(':id', $distractedUser->getID(), PDO::PARAM_INT);
 
         $req->execute();
-
     }
-
 
     public function findDistractedMemberByLinkCode($distractCode){
         $req = $this->_bdd->prepare('SELECT * FROM `members` WHERE `distractedUser`= :distractCode');
@@ -239,6 +218,4 @@ WHERE duels.id = :idDuel');
 
         return new Member($req->fetch());
     }
-
-
 }
