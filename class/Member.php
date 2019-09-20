@@ -5,8 +5,6 @@ class Member
 {
     protected $id;
     protected $login;
-    protected $name;
-    protected $lastName;
     protected $mailAdress;
     protected $password;
     protected $passwordTemp;

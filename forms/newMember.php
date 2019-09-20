@@ -38,6 +38,7 @@ $memberManager = new MemberManager();
 
 if($memberManager->noDoubleMember($login, $mail) == false){
     $newMember = new Member([]);
+
     $newMember->setLogin($login);
     $newMember->setMailAdress($mail);
     $newMember->setPermission('Member');
@@ -50,6 +51,7 @@ if($memberManager->noDoubleMember($login, $mail) == false){
     redirect('home');
 }
 else{
+    $_SESSION['errors']['inscription'] = 'Une erreur s\'est produite, veuillez recommencer';
     redirect('inscription');
 }
 

@@ -12,6 +12,7 @@ if(isset($_SESSION['distractMember'])) {
     }
     redirect('connexion');
 }
+//From compte page.
 else {
     memberOnly($member, 'home');
 
@@ -29,8 +30,18 @@ else {
             redirect('compte');
         }
     }
+    else{
+        $memberUpdate->setPassword('null');
+    }
 
     $memberManager = new MemberManager();
-    $_SESSION['errors']['update'] = ($memberManager->MemberUpdate($member, $memberUpdate)) ? 'Information mises à jours' : 'Une erreur est survenu veuillez retenter plus tard';
+    if($memberManager->MemberUpdate($member, $memberUpdate)){
+        $_SESSION['errors']['update'] = 'Information mises à jours';
+        $_SESSION['member']['login'] = $memberUpdate->getLogin();
+        $_SESSION['member']['mailAdress'] = $memberUpdate->getMailAdress();
+    }
+    else{
+        $_SESSION['errors']['update'] = 'Une erreur est survenu veuillez retenter plus tard';
+    }
     redirect('compte');
 }

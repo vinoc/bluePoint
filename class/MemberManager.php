@@ -71,7 +71,7 @@ class MemberManager extends BDD
 
     public function MemberUpdate(object $member, object $memberUpdate): bool
     {
-        if ($memberUpdate->getPassword() != null) {
+        if ($memberUpdate->getPassword() != 'null') {
             $req = $this->_bdd->prepare(' UPDATE `members` SET `login`=:login, `mailAdress`=:mailAdress,`password`=:password WHERE `id`=:id');
             $req->bindValue(':password', password_hash($memberUpdate->getPassword(), PASSWORD_DEFAULT), PDO::PARAM_STR);
         }
@@ -80,7 +80,6 @@ class MemberManager extends BDD
         }
 
         $req->bindValue(':login', $memberUpdate->getLogin(), PDO::PARAM_STR);
-
         $req->bindValue(':mailAdress', $memberUpdate->getMailAdress(), PDO::PARAM_STR);
         $req->bindValue(':id', $member->getID(), PDO::PARAM_INT);
 
@@ -149,10 +148,11 @@ class MemberManager extends BDD
 
         $req->execute();
 
-        if($req->fetch() == false){
+        $data = $req->fetch();
+        if($data == false){
             return new Member([]);
         }
-        return new Member($req->fetch());
+        return new Member($data);
     }
 
     public function distractedMember(object $distractedUser, string $distractCode){

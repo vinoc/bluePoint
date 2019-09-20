@@ -16,6 +16,7 @@ function getErrors(string $nomDuChamp):string
     return $error;
 }
 
+
 function connecting():object
 {
     if (isset($_SESSION['member'])) {

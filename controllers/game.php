@@ -41,6 +41,10 @@ $_SESSION['duel']['id'] = '';
 $_SESSION['duel']['idBack'] = '';
 
 if ($versus != false) {
+    if(!$member->isIdentify()){
+        redirect('connexion');
+    }
+
     $showDuel = '';
     $duelLogin = 'Match en Duel contre: ' . $versus->getLogin();
     $isDuel = 'true';
@@ -48,6 +52,10 @@ if ($versus != false) {
     $_SESSION['duel']['id'] = $versus->getID();
 }
 elseif ($duelBack != false) {
+    if(!$member->isIdentify()){
+        redirect('connexion');
+    }
+
     $showDuel = '';
     $duelLogin = 'Match retour contre ' . $duelBack->getLogin() . ' qui a fait ' . $duelBack->getScore() . ' points !';
 

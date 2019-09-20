@@ -8,7 +8,7 @@ if (!isset($_GET['id']) OR intval($_GET['id']) < 1) {
 else {
     $myPage = (intval($_GET['id']) == intval($member->getID())) ? '' : 'hidden';
     $playerPage = $memberManager->getMember($_GET['id']);
-
+    $playerPage = ($playerPage == false)? $memberManager->getMember(1) : $playerPage ;
 }
 
 $scoreManager = new ScoreManager();
