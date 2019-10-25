@@ -154,5 +154,6 @@ function endGame(){
     classToggle(theGame, 'hidden');
     scoresFinal.classList.remove('hidden');
     saveScore();
+    points = undefined
     pauseBeforeNewGame();
 }
